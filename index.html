@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hitchin Running Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red: #C8102E;
+    --red-dark: #8C0C20;
+    --ink: #15161A;
+    --fog: #EFEDE7;
+    --paper: #FAF8F4;
+    --slate: #6B6F76;
+    --gold: #C9A24B;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Anton', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.02em;
+    line-height:0.95;
+  }
+  .eyebrow{
+    font-family:'Bebas Neue', sans-serif;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    font-size:0.85rem;
+    color:var(--red);
+  }
+  a{color:inherit;}
+  img{display:block; max-width:100%;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
+
+  /* NAV */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 28px;
+    background:rgba(21,22,26,0.0);
+    transition:background 0.3s ease, padding 0.3s ease;
+  }
+  nav.scrolled{ background:rgba(21,22,26,0.92); backdrop-filter:blur(6px); padding:10px 28px;}
+  .nav-brand{display:flex; align-items:center; gap:10px;}
+  .nav-brand img{height:40px; width:40px;}
+  .nav-brand span{font-family:'Bebas Neue'; letter-spacing:0.1em; color:#fff; font-size:1.1rem;}
+  .nav-links{display:flex; gap:28px; list-style:none;}
+  .nav-links a{
+    color:#fff; text-decoration:none; font-size:0.82rem;
+    text-transform:uppercase; letter-spacing:0.12em; font-weight:600;
+    opacity:0.85; transition:opacity 0.2s;
+  }
+  .nav-links a:hover{opacity:1; color:var(--gold);}
+  .nav-cta{
+    background:var(--red); color:#fff; padding:9px 18px; border-radius:2px;
+    font-size:0.78rem; text-transform:uppercase; letter-spacing:0.1em; font-weight:700;
+    text-decoration:none;
+  }
+  .burger{display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none;}
+  .burger span{width:24px; height:2px; background:#fff;}
+  .mobile-menu{
+    display:none; position:fixed; inset:0; z-index:99; background:var(--ink);
+    flex-direction:column; align-items:center; justify-content:center; gap:28px;
+  }
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{color:#fff; text-decoration:none; font-family:'Anton'; font-size:1.6rem; text-transform:uppercase;}
+  .mobile-close{position:absolute; top:24px; right:28px; background:none; border:none; color:#fff; font-size:1.8rem; cursor:pointer;}
+
+  /* HERO */
+  .hero{
+    position:relative; height:100vh; min-height:640px;
+    display:flex; align-items:flex-end;
+    background:var(--ink);
+    overflow:hidden;
+  }
+  .hero img.bg{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    filter:grayscale(15%) brightness(0.62);
+  }
+  .hero::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(21,22,26,0.15) 0%, rgba(21,22,26,0.1) 40%, rgba(21,22,26,0.92) 100%);
+  }
+  .hero-content{position:relative; z-index:2; padding:0 24px 90px; width:100%;}
+  .hero-content .eyebrow{color:var(--gold); margin-bottom:14px; display:block;}
+  .hero h1{
+    color:#fff; font-size:clamp(3.2rem, 9vw, 7.2rem); max-width:920px;
+  }
+  .hero h1 em{font-style:normal; color:var(--red);}
+  .hero p.lede{
+    color:#E8E6E0; max-width:560px; margin-top:22px; font-size:1.08rem; font-weight:400;
+  }
+  .hero-actions{display:flex; gap:14px; margin-top:34px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:15px 28px; text-decoration:none; font-weight:700;
+    text-transform:uppercase; font-size:0.82rem; letter-spacing:0.1em;
+    border-radius:2px; transition:transform 0.15s ease, background 0.2s ease;
+    border:none; cursor:pointer; font-family:inherit;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--red); color:#fff;}
+  .btn-primary:hover{background:var(--red-dark);}
+  .btn-outline{border:1.5px solid rgba(255,255,255,0.55); color:#fff; background:transparent;}
+  .btn-outline:hover{border-color:#fff; background:rgba(255,255,255,0.08);}
+  .btn-facebook{background:#1877F2; color:#fff;}
+  .btn-facebook:hover{background:#1462c4;}
+
+  .scroll-cue{
+    position:absolute; right:32px; bottom:32px; z-index:2;
+    writing-mode:vertical-rl; color:#cfcdc6; font-size:0.72rem;
+    letter-spacing:0.2em; text-transform:uppercase; display:flex; align-items:center; gap:10px;
+  }
+  .scroll-cue::after{content:""; width:1px; height:54px; background:#cfcdc6;}
+
+  /* STRIP STATS */
+  .stats{ background:var(--ink); color:#fff; padding:36px 0; }
+  .stats .wrap{display:flex; flex-wrap:wrap; justify-content:space-between; gap:24px;}
+  .stat{flex:1; min-width:140px; text-align:left; border-left:3px solid var(--red); padding-left:16px;}
+  .stat .num{font-family:'Anton'; font-size:2.4rem; line-height:1;}
+  .stat .label{font-size:0.78rem; text-transform:uppercase; letter-spacing:0.1em; color:#aeb0b5; margin-top:6px;}
+
+  /* SECTION GENERIC */
+  section{padding:110px 0;}
+  .section-head{max-width:640px; margin-bottom:56px;}
+  .section-head .eyebrow{margin-bottom:12px; display:block;}
+  .section-head h2{font-size:clamp(2.1rem, 4.2vw, 3.4rem);}
+  .section-head p{color:var(--slate); margin-top:16px; font-size:1.05rem;}
+
+  /* ABOUT */
+  .about{display:grid; grid-template-columns:1.1fr 0.9fr; gap:60px; align-items:center;}
+  .about-copy p{color:#3c3d40; margin-bottom:18px; font-size:1.02rem;}
+  .about-img{position:relative;}
+  .about-img img{border-radius:3px; width:100%; height:480px; object-fit:cover;}
+  .about-img .tag{
+    position:absolute; bottom:-22px; left:-22px; background:var(--red); color:#fff;
+    padding:18px 22px; max-width:230px; font-family:'Bebas Neue'; font-size:1rem;
+    letter-spacing:0.04em; box-shadow:0 12px 28px rgba(0,0,0,0.18);
+  }
+
+  /* SESSIONS TIMETABLE */
+  .sessions{background:var(--ink); color:#fff;}
+  .sessions .section-head p{color:#b9bbc0;}
+  .timetable{display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.12);}
+  .session-card{background:var(--ink); padding:34px 28px; position:relative;}
+  .session-card .day{font-family:'Bebas Neue'; color:var(--gold); font-size:0.85rem; letter-spacing:0.18em; text-transform:uppercase;}
+  .session-card h3{font-size:1.5rem; margin-top:10px; color:#fff;}
+  .session-card .time{font-family:'Anton'; font-size:1.7rem; color:var(--red); margin-top:14px;}
+  .session-card .desc{color:#b9bbc0; margin-top:12px; font-size:0.94rem;}
+  .session-card .meet{margin-top:18px; font-size:0.82rem; color:#85878d; text-transform:uppercase; letter-spacing:0.06em;}
+  .new-flag{
+    display:inline-block; background:var(--red); color:#fff; font-family:'Bebas Neue';
+    font-size:0.7rem; letter-spacing:0.12em; padding:3px 9px; border-radius:20px; margin-left:10px; vertical-align:middle;
+  }
+
+  /* GALLERY / RACE */
+  .race{background:var(--fog);}
+  .race-grid{display:grid; grid-template-columns:1.4fr 1fr; gap:18px;}
+  .race-grid img{width:100%; height:100%; object-fit:cover; border-radius:3px;}
+  .race-grid .col{display:grid; gap:18px;}
+  .race-grid .col img{height:241px;}
+  .race-grid > img{height:auto;}
+
+  .strava-card{
+    margin-top:48px; background:#fff; border:1px solid #e4e1d8; border-radius:6px;
+    padding:34px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;
+  }
+  .strava-left{display:flex; align-items:center; gap:18px;}
+  .strava-icon{
+    width:54px; height:54px; border-radius:50%; background:#FC4C02;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .strava-icon svg{width:26px; height:26px; fill:#fff;}
+  .strava-left h3{font-family:'Anton'; font-size:1.4rem; text-transform:none;}
+  .strava-left p{color:var(--slate); font-size:0.92rem; margin-top:4px;}
+
+  /* JOIN */
+  .join{background:var(--red); color:#fff; position:relative; overflow:hidden;}
+  .join::before{
+    content:"HITCHIN"; position:absolute; right:-40px; bottom:-60px;
+    font-family:'Anton'; font-size:14rem; color:rgba(255,255,255,0.06); line-height:1; white-space:nowrap;
+  }
+  .join .wrap{position:relative; z-index:1;}
+  .join-grid{display:grid; grid-template-columns:1fr 1fr; gap:50px;}
+  .join h2{font-size:clamp(2.1rem, 4.2vw, 3.2rem); color:#fff;}
+  .join .eyebrow{color:#FFD9DD;}
+  .join p{margin-top:16px; max-width:480px; color:#FFE3E6;}
+  .steps{list-style:none; margin-top:28px; display:flex; flex-direction:column; gap:18px;}
+  .steps li{display:flex; gap:16px; align-items:flex-start;}
+  .steps .n{
+    font-family:'Anton'; font-size:1.1rem; background:rgba(255,255,255,0.16);
+    width:36px; height:36px; flex-shrink:0; display:flex; align-items:center; justify-content:center; border-radius:50%;
+  }
+  .steps .t{font-weight:600;}
+  .steps .d{color:#FFE3E6; font-size:0.92rem; margin-top:2px;}
+  .join-card{ background:#fff; color:var(--ink); border-radius:6px; padding:38px; align-self:start; }
+  .join-card h3{font-family:'Anton'; font-size:1.6rem; text-transform:none;}
+  .join-card p{color:var(--slate); margin-top:10px; font-size:0.94rem;}
+  .join-card .btn{width:100%; justify-content:center; margin-top:14px;}
+  .join-card .price{font-family:'Anton'; font-size:2.6rem; margin-top:20px;}
+  .join-card .price span{font-family:'Inter'; font-size:0.95rem; color:var(--slate); font-weight:400; text-transform:none;}
+
+  /* COMMUNITY GALLERY */
+  .gallery{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:10px;}
+  .gallery img{width:100%; height:230px; object-fit:cover; border-radius:3px; transition:transform 0.3s ease;}
+  .gallery a{overflow:hidden; border-radius:3px; display:block;}
+  .gallery a:hover img{transform:scale(1.06);}
+
+  /* FOOTER */
+  footer{background:var(--ink); color:#cfd0d4; padding:70px 0 30px;}
+  .foot-top{display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:40px; padding-bottom:50px; border-bottom:1px solid rgba(255,255,255,0.1);}
+  .foot-brand{display:flex; align-items:center; gap:12px; margin-bottom:14px;}
+  .foot-brand img{height:46px;}
+  .foot-brand span{font-family:'Bebas Neue'; letter-spacing:0.08em; font-size:1.2rem; color:#fff;}
+  .foot-col h4{font-size:0.8rem; text-transform:uppercase; letter-spacing:0.12em; color:#fff; margin-bottom:16px;}
+  .foot-col ul{list-style:none; display:flex; flex-direction:column; gap:10px;}
+  .foot-col a{text-decoration:none; color:#aeb0b5; font-size:0.92rem;}
+  .foot-col a:hover{color:#fff;}
+  .foot-bottom{display:flex; justify-content:space-between; align-items:center; padding-top:24px; flex-wrap:wrap; gap:14px;}
+  .foot-bottom p{font-size:0.8rem; color:#7b7d82;}
+
+  .config-error{
+    position:fixed; bottom:18px; left:18px; right:18px; z-index:200;
+    background:#fff3cd; border:1px solid #e0c068; color:#5b4a16;
+    padding:14px 18px; border-radius:6px; font-size:0.86rem; max-width:560px; margin:0 auto;
+    display:none;
+  }
+
+  @media (max-width: 900px){
+    .nav-links{display:none;}
+    .burger{display:flex;}
+    .about{grid-template-columns:1fr;}
+    .about-img{order:-1;}
+    .timetable{grid-template-columns:1fr;}
+    .race-grid{grid-template-columns:1fr;}
+    .race-grid .col{grid-template-columns:1fr 1fr; display:grid;}
+    .join-grid{grid-template-columns:1fr;}
+    .gallery{grid-template-columns:repeat(2,1fr);}
+    .foot-top{grid-template-columns:1fr 1fr;}
+    section{padding:70px 0;}
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-brand">
+    <img src="images/1782804209459_image.png" alt="Hitchin Running Club logo">
+    <span>HITCHIN RUNNING CLUB</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">Club</a></li>
+    <li><a href="#sessions">Sessions</a></li>
+    <li><a href="#races">Races</a></li>
+    <li><a href="#join">Join</a></li>
+    <li><a href="#community">Community</a></li>
+  </ul>
+  <a href="#join" class="nav-cta">Join Us</a>
+  <button class="burger" id="burgerBtn" aria-label="menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileCloseBtn" aria-label="close menu">&times;</button>
+  <a href="#about">Club</a>
+  <a href="#sessions">Sessions</a>
+  <a href="#races">Races</a>
+  <a href="#join">Join</a>
+  <a href="#community">Community</a>
+</div>
+
+<header class="hero">
+  <img class="bg" src="images/unnamed-4.jpg" alt="Runners through the fog at dawn">
+  <div class="hero-content">
+    <span class="eyebrow">North Herts &middot; Friendly &amp; all-pace</span>
+    <h1>Run further<br>with the <em>Hares</em></h1>
+    <p class="lede" id="heroTagline">Loading&hellip;</p>
+    <div class="hero-actions">
+      <a id="heroFacebookBtn" href="#" target="_blank" class="btn btn-facebook">Join us on Facebook</a>
+      <a href="#sessions" class="btn btn-outline">See session times</a>
+    </div>
+  </div>
+  <div class="scroll-cue">Scroll</div>
+</header>
+
+<div class="stats">
+  <div class="wrap" id="statsWrap"></div>
+</div>
+
+<section id="about">
+  <div class="wrap about">
+    <div class="about-copy">
+      <span class="eyebrow">Who we are</span>
+      <h2 style="margin-top:10px; font-size:clamp(2.1rem, 4.2vw, 3.4rem);">A club built around the run, not the result</h2>
+      <p>Hitchin Running Club (the Hitchin Hares) is a friendly bunch who like to meet up socially for some running &mdash; some of us take it more seriously than others. It's a great way to meet like-minded people, have some fun, and get fit in the process.</p>
+      <p>No trials, no minimum pace, no judgement. Sign up via Facebook to say hello before your first session.</p>
+      <p id="eventsDescription">Loading club events&hellip;</p>
+    </div>
+    <div class="about-img">
+      <img src="images/unnamed-2.jpg" alt="Club runners crossing a wheat field at sunset">
+      <div class="tag">EVERY RUN ENDS WITH GOOD COMPANY</div>
+    </div>
+  </div>
+</section>
+
+<section id="sessions" class="sessions">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Weekly sessions</span>
+      <h2>Three sessions. All welcome.</h2>
+      <p>Turn up to one, two, or all three &mdash; sessions are open to members and visitors alike, no booking needed.</p>
+    </div>
+    <div class="timetable" id="timetable"></div>
+  </div>
+</section>
+
+<section id="races" class="race">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">On race day</span>
+      <h2>We turn up in numbers</h2>
+      <p>From the Herts Cross Country League to summer mid-week races, you'll find a sea of red vests cheering at the finish line. We track our runs together on Strava.</p>
+    </div>
+    <div class="race-grid">
+      <img src="images/unnamed-5.jpg" alt="Hitchin Running Club at a cross country race">
+      <div class="col">
+        <img src="images/unnamed-1.jpg" alt="Hitchin Running Club racing team">
+        <img src="images/unnamed-3.jpg" alt="Athletics track start line">
+      </div>
+    </div>
+    <div class="strava-card">
+      <div class="strava-left">
+        <div class="strava-icon">
+          <svg viewBox="0 0 24 24"><path d="M13.828 0 7.93 11.828h4.16L9.83 17.39l8.346-12.114H13.97L17.5 0z"/></svg>
+        </div>
+        <div>
+          <h3>Follow the club on Strava</h3>
+          <p>Log your runs, kudos your clubmates, and see how the group is getting on.</p>
+        </div>
+      </div>
+      <a id="stravaBtn" href="#" target="_blank" class="btn btn-primary" style="background:#FC4C02;">View Strava Club</a>
+    </div>
+  </div>
+</section>
+
+<section id="join" class="join">
+  <div class="wrap">
+    <div class="join-grid">
+      <div>
+        <span class="eyebrow">Getting started</span>
+        <h2>Lace up and join us</h2>
+        <p>New runners are welcome at any session &mdash; sign up via Facebook first, then come along to a Wednesday or Sunday run to meet the group.</p>
+        <ul class="steps" id="joinSteps"></ul>
+      </div>
+      <div class="join-card">
+        <h3>Membership</h3>
+        <p id="membershipDescription">Loading&hellip;</p>
+        <div class="price" id="membershipPrice"></div>
+        <a id="joinFacebookBtn" href="#" target="_blank" class="btn btn-facebook">Message us on Facebook</a>
+        <a href="#sessions" class="btn btn-outline" style="color:var(--ink); border-color:var(--ink);">See session times</a>
+        <p style="margin-top:14px; font-size:0.82rem; color:var(--slate);" id="membershipNote"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="community">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">From the club</span>
+      <h2>Mud, medals and mince pies</h2>
+      <p>A look at life in the club &mdash; from foggy Sunday long runs to the Christmas social by the fountain.</p>
+    </div>
+    <div class="gallery">
+      <a href="#"><img src="images/unnamed-4.jpg" alt="Foggy morning run"></a>
+      <a href="#"><img src="images/unnamed-2.jpg" alt="Wheat field summer run"></a>
+      <a href="#"><img src="images/unnamed.jpg" alt="Christmas social by the fountain"></a>
+      <a href="#"><img src="images/unnamed-5.jpg" alt="Cross country race team"></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-col">
+        <div class="foot-brand">
+          <img src="images/1782804209459_image.png" alt="Hitchin Running Club logo">
+          <span>HITCHIN RUNNING CLUB</span>
+        </div>
+        <p style="font-size:0.9rem; color:#9a9ca1; max-width:280px;">A friendly, all-pace running club in Hitchin, Hertfordshire. Proudly linked with Burnt Hare.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Club</h4>
+        <ul>
+          <li><a href="#about">About us</a></li>
+          <li><a href="#sessions">Sessions</a></li>
+          <li><a href="#races">Races</a></li>
+          <li><a href="#join">Membership</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Connect</h4>
+        <ul id="footConnect"></ul>
+      </div>
+      <div class="foot-col">
+        <h4>Get in touch</h4>
+        <ul id="footContact"></ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>&copy; <span id="footYear"></span> Hitchin Running Club. All rights reserved.</p>
+      <p>Affiliated to England Athletics</p>
+    </div>
+  </div>
+</footer>
+
+<div class="config-error" id="configError">
+  Couldn't load <code>club-config.json</code>. If you're opening this file directly from disk, browsers block local file loads &mdash; serve the folder instead, e.g. run <code>python3 -m http.server</code> in this directory and open <code>http://localhost:8000</code>.
+</div>
+
+<script>
+  // ---- Nav scroll + mobile menu ----
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 40){ nav.classList.add('scrolled'); }
+    else{ nav.classList.remove('scrolled'); }
+  });
+  const burgerBtn = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileCloseBtn = document.getElementById('mobileCloseBtn');
+  burgerBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+  mobileCloseBtn.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+  document.getElementById('footYear').textContent = new Date().getFullYear();
+
+  // ---- Load club configuration ----
+  fetch('club-config.json')
+    .then(res => {
+      if(!res.ok) throw new Error('Failed to load config');
+      return res.json();
+    })
+    .then(renderConfig)
+    .catch(err => {
+      console.error(err);
+      document.getElementById('configError').style.display = 'block';
+    });
+
+  function renderConfig(cfg){
+    // Hero
+    document.getElementById('heroTagline').textContent = cfg.club.tagline;
+    document.getElementById('heroFacebookBtn').href = cfg.links.facebook;
+
+    // Stats
+    const statsWrap = document.getElementById('statsWrap');
+    statsWrap.innerHTML = cfg.stats.map(s => `
+      <div class="stat">
+        <div class="num">${s.number}</div>
+        <div class="label">${s.label}</div>
+      </div>
+    `).join('');
+
+    // About / events
+    document.getElementById('eventsDescription').textContent = cfg.events.description;
+
+    // Sessions timetable
+    const timetable = document.getElementById('timetable');
+    timetable.innerHTML = cfg.sessions.map(s => `
+      <div class="session-card">
+        <div class="day">${s.day}</div>
+        <h3>${s.title}${s.day === 'Monday' ? '<span class="new-flag">New</span>' : ''}</h3>
+        <div class="time">${s.time}</div>
+        <p class="desc">${s.description}</p>
+        <p class="meet">Meet: ${s.meet}</p>
+      </div>
+    `).join('');
+
+    // Strava link
+    document.getElementById('stravaBtn').href = cfg.links.strava;
+
+    // Join steps
+    const joinSteps = document.getElementById('joinSteps');
+    joinSteps.innerHTML = cfg.membership.joinSteps.map((step, i) => `
+      <li>
+        <span class="n">${i + 1}</span>
+        <div>
+          <div class="t">${step.title}</div>
+          <div class="d">${step.description}</div>
+        </div>
+      </li>
+    `).join('');
+
+    // Membership card
+    document.getElementById('membershipDescription').textContent = cfg.membership.description;
+    document.getElementById('membershipPrice').innerHTML = `${cfg.membership.price} <span>${cfg.membership.period}</span>`;
+    document.getElementById('joinFacebookBtn').href = cfg.links.facebook;
+    document.getElementById('membershipNote').textContent = cfg.membership.note;
+
+    // Footer connect links
+    document.getElementById('footConnect').innerHTML = `
+      <li><a href="${cfg.links.strava}" target="_blank">Strava Club</a></li>
+      <li><a href="${cfg.links.facebook}" target="_blank">Facebook</a></li>
+      <li><a href="${cfg.links.burntHare}" target="_blank">Burnt Hare</a></li>
+      <li><a href="${cfg.links.spond}" target="_blank">Spond</a></li>
+    `;
+
+    // Footer contact
+    document.getElementById('footContact').innerHTML = `
+      <li><a href="mailto:${cfg.contact.email}">${cfg.contact.email}</a></li>
+      <li><a href="#">${cfg.contact.location}</a></li>
+    `;
+  }
+</script>
+</body>
+</html>
