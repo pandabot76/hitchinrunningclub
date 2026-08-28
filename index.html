@@ -219,7 +219,7 @@
 
   /* FOOTER */
   footer{background:var(--ink); color:#cfd0d4; padding:70px 0 30px;}
-  .foot-top{display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:40px; padding-bottom:50px; border-bottom:1px solid rgba(255,255,255,0.1);}
+  .foot-top{display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:40px; padding-bottom:50px; border-bottom:1px solid rgba(255,255,255,0.1);}
   .foot-brand{display:flex; align-items:center; gap:12px; margin-bottom:14px;}
   .foot-brand img{height:46px;}
   .foot-brand span{font-family:'Bebas Neue'; letter-spacing:0.08em; font-size:1.2rem; color:#fff;}
@@ -397,10 +397,6 @@
         <h4>Connect</h4>
         <ul id="footConnect"></ul>
       </div>
-      <div class="foot-col">
-        <h4>Get in touch</h4>
-        <ul id="footContact"></ul>
-      </div>
     </div>
     <div class="foot-bottom">
       <p>&copy; <span id="footYear"></span> Hitchin Running Club. All rights reserved.</p>
@@ -505,12 +501,6 @@
       <li><a href="${cfg.links.facebook}" target="_blank">Facebook</a></li>
       <li><a href="${cfg.links.burntHare}" target="_blank">Burnt Hare</a></li>
       <li><a href="${cfg.links.spond}" target="_blank">Spond</a></li>
-    `;
-
-    // Footer contact
-    document.getElementById('footContact').innerHTML = `
-      <li><a href="mailto:${cfg.contact.email}">${cfg.contact.email}</a></li>
-      <li><a href="#">${cfg.contact.location}</a></li>
     `;
   }
 </script>

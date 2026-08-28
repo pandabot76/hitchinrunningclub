@@ -9,14 +9,14 @@
     { "number": "120+", "label": "Active members" },
     { "number": "3", "label": "Sessions every week" },
     { "number": "10K", "label": "Typical club run distance" },
-    { "number": "Est.", "label": "Proudly Hitchin-grown" }
+    { "number": "Est 2008", "label": "Proudly Hitchin-grown" }
   ],
   "sessions": [
     {
       "day": "Monday",
       "title": "Intervals",
       "time": "7:00PM",
-      "description": "New for this year \u2014 structured speedwork at the track, built to make race pace feel comfortable.",
+      "description": "Structured speedwork at the track, built to make race pace feel comfortable.",
       "meet": "New location weekly (check Facebook/Spond for confirmation)"
     },
     {
@@ -61,13 +61,13 @@
       "color": "#C8102E",
       "description": "Our summer mid-week league sees us line up against neighbouring clubs across Hertfordshire \u2014 all paces welcome, from front-runners to first-timers.",
       "linkLabel": "See the fixtures",
-      "linkUrl": "https://www.hitchinrunningclub.co.uk/club-runs"
+      "linkUrl": "https://www.mwrrl.org.uk/"
     },
     {
       "title": "Chip Shop Challenge",
       "icon": "\ud83c\udf5f",
       "color": "#C9A24B",
-      "description": "A club favourite \u2014 run to the chip shop, eat your chips, then run back. Silly, sociable, and exactly the kind of thing the Hares do best.",
+      "description": "A club favourite \u2014 run to the chip shop, eat your chips. Silly, sociable, and exactly the kind of thing the Hares do best.",
       "linkLabel": "Ask about the next one",
       "linkUrl": "https://www.facebook.com/hitchinrunningclub"
     },
@@ -101,20 +101,14 @@
       "color": "#6B6F76",
       "description": "Spond is where all our events are organised and discussed \u2014 RSVP to socials, races and league fixtures, and get reminders before they happen.",
       "linkLabel": "Open Spond",
-      "linkUrl": "#"
+      "linkUrl": "https://www.spond.com/"
     }
   ],
   "links": {
     "strava": "https://www.strava.com/clubs/Hitchinrunningclub",
     "facebook": "https://www.facebook.com/hitchinrunningclub",
     "burntHare": "http://www.burnthare.com",
-    "spond": "#",
-    "_spondNote": "Replace the # above with the club's actual Spond group URL."
-  },
-  "contact": {
-    "email": "hello@hitchinrunningclub.co.uk",
-    "location": "St Mary's car park, Hitchin, Hertfordshire, SG5 1AB",
-    "trackLocation": "Ridlins Athletic Track, Stevenage (monthly club trip)"
+    "spond": "https://www.spond.com/"
   },
   "events": {
     "description": "We run a number of events under the banner of Hitchin Hares, including the Herts Winter Cross Country League and the Summer Mid-Week League. We're also linked with Burnt Hare, who bring great running events to Hitchin and the surrounding Hertfordshire countryside.",
