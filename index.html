@@ -163,26 +163,27 @@
     font-size:0.7rem; letter-spacing:0.12em; padding:3px 9px; border-radius:20px; margin-left:10px; vertical-align:middle;
   }
 
-  /* GALLERY / RACE */
+  /* CLUB EVENTS GRID */
   .race{background:var(--fog);}
-  .race-grid{display:grid; grid-template-columns:1.4fr 1fr; gap:18px;}
-  .race-grid img{width:100%; height:100%; object-fit:cover; border-radius:3px;}
-  .race-grid .col{display:grid; gap:18px;}
-  .race-grid .col img{height:241px;}
-  .race-grid > img{height:auto;}
-
-  .strava-card{
-    margin-top:48px; background:#fff; border:1px solid #e4e1d8; border-radius:6px;
-    padding:34px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;
+  .events-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:22px;}
+  .event-card{
+    background:#fff; border:1px solid #e4e1d8; border-radius:6px;
+    padding:32px 28px; display:flex; flex-direction:column; gap:14px;
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
   }
-  .strava-left{display:flex; align-items:center; gap:18px;}
-  .strava-icon{
-    width:54px; height:54px; border-radius:50%; background:#FC4C02;
-    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  .event-card:hover{transform:translateY(-4px); box-shadow:0 14px 30px rgba(21,22,26,0.08);}
+  .event-icon{
+    width:54px; height:54px; border-radius:50%; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; font-size:1.5rem;
   }
-  .strava-icon svg{width:26px; height:26px; fill:#fff;}
-  .strava-left h3{font-family:'Anton'; font-size:1.4rem; text-transform:none;}
-  .strava-left p{color:var(--slate); font-size:0.92rem; margin-top:4px;}
+  .event-icon svg{width:26px; height:26px; fill:#fff;}
+  .event-card h3{font-family:'Anton'; font-size:1.25rem; text-transform:none; margin-top:2px;}
+  .event-card p{color:var(--slate); font-size:0.92rem; flex-grow:1;}
+  .event-card a.event-link{
+    margin-top:4px; font-weight:700; font-size:0.82rem; text-transform:uppercase;
+    letter-spacing:0.08em; color:var(--red); text-decoration:none; display:inline-flex; align-items:center; gap:6px;
+  }
+  .event-card a.event-link:hover{color:var(--red-dark);}
 
   /* JOIN */
   .join{background:var(--red); color:#fff; position:relative; overflow:hidden;}
@@ -236,14 +237,16 @@
     display:none;
   }
 
+  @media (max-width: 900px) and (min-width: 641px){
+    .events-grid{grid-template-columns:repeat(2, 1fr);}
+  }
   @media (max-width: 900px){
     .nav-links{display:none;}
     .burger{display:flex;}
     .about{grid-template-columns:1fr;}
     .about-img{order:-1;}
     .timetable{grid-template-columns:1fr;}
-    .race-grid{grid-template-columns:1fr;}
-    .race-grid .col{grid-template-columns:1fr 1fr; display:grid;}
+    .events-grid{grid-template-columns:1fr;}
     .join-grid{grid-template-columns:1fr;}
     .gallery{grid-template-columns:repeat(2,1fr);}
     .foot-top{grid-template-columns:1fr 1fr;}
@@ -326,29 +329,11 @@
 <section id="races" class="race">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">On race day</span>
-      <h2>We turn up in numbers</h2>
-      <p>From the Herts Cross Country League to summer mid-week races, you'll find a sea of red vests cheering at the finish line. We track our runs together on Strava.</p>
+      <span class="eyebrow">Get involved</span>
+      <h2>Ways to run with us</h2>
+      <p>From weekly leagues to our sister events site, here's everywhere the Hares turn up throughout the year.</p>
     </div>
-    <div class="race-grid">
-      <img src="images/unnamed-5.jpg" alt="Hitchin Running Club at a cross country race">
-      <div class="col">
-        <img src="images/unnamed-1.jpg" alt="Hitchin Running Club racing team">
-        <img src="images/unnamed-3.jpg" alt="Athletics track start line">
-      </div>
-    </div>
-    <div class="strava-card">
-      <div class="strava-left">
-        <div class="strava-icon">
-          <svg viewBox="0 0 24 24"><path d="M13.828 0 7.93 11.828h4.16L9.83 17.39l8.346-12.114H13.97L17.5 0z"/></svg>
-        </div>
-        <div>
-          <h3>Follow the club on Strava</h3>
-          <p>Log your runs, kudos your clubmates, and see how the group is getting on.</p>
-        </div>
-      </div>
-      <a id="stravaBtn" href="#" target="_blank" class="btn btn-primary" style="background:#FC4C02;">View Strava Club</a>
-    </div>
+    <div class="events-grid" id="eventBoxesGrid"></div>
   </div>
 </section>
 
@@ -485,8 +470,16 @@
       </div>
     `).join('');
 
-    // Strava link
-    document.getElementById('stravaBtn').href = cfg.links.strava;
+    // Club events grid (configurable boxes)
+    const eventBoxesGrid = document.getElementById('eventBoxesGrid');
+    eventBoxesGrid.innerHTML = cfg.eventBoxes.map(e => `
+      <div class="event-card">
+        <div class="event-icon" style="background:${e.color || 'var(--red)'};">${e.icon || ''}</div>
+        <h3>${e.title}</h3>
+        <p>${e.description}</p>
+        <a class="event-link" href="${e.linkUrl}" target="_blank">${e.linkLabel} &rarr;</a>
+      </div>
+    `).join('');
 
     // Join steps
     const joinSteps = document.getElementById('joinSteps');
@@ -511,12 +504,13 @@
       <li><a href="${cfg.links.strava}" target="_blank">Strava Club</a></li>
       <li><a href="${cfg.links.facebook}" target="_blank">Facebook</a></li>
       <li><a href="${cfg.links.burntHare}" target="_blank">Burnt Hare</a></li>
+      <li><a href="${cfg.links.spond}" target="_blank">Spond</a></li>
     `;
 
     // Footer contact
     document.getElementById('footContact').innerHTML = `
-      <li><a href="${cfg.links.facebook}" target="_blank">Message us on Facebook</a></li>
       <li><a href="mailto:${cfg.contact.email}">${cfg.contact.email}</a></li>
+      <li><a href="#">${cfg.contact.location}</a></li>
     `;
   }
 </script>

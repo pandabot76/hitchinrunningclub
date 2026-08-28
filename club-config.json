@@ -54,6 +54,56 @@
       }
     ]
   },
+  "eventBoxes": [
+    {
+      "title": "Mid-Week League",
+      "icon": "\ud83c\udfc1",
+      "color": "#C8102E",
+      "description": "Our summer mid-week league sees us line up against neighbouring clubs across Hertfordshire \u2014 all paces welcome, from front-runners to first-timers.",
+      "linkLabel": "See the fixtures",
+      "linkUrl": "https://www.hitchinrunningclub.co.uk/club-runs"
+    },
+    {
+      "title": "Chip Shop Challenge",
+      "icon": "\ud83c\udf5f",
+      "color": "#C9A24B",
+      "description": "A club favourite \u2014 run to the chip shop, eat your chips, then run back. Silly, sociable, and exactly the kind of thing the Hares do best.",
+      "linkLabel": "Ask about the next one",
+      "linkUrl": "https://www.facebook.com/hitchinrunningclub"
+    },
+    {
+      "title": "Monopoly Run",
+      "icon": "\ud83c\udfb2",
+      "color": "#15161A",
+      "description": "Roll the dice and run the streets \u2014 our take on the classic board game turns Hitchin into a giant board with checkpoints and challenges along the way.",
+      "linkLabel": "Find out more",
+      "linkUrl": "https://www.facebook.com/hitchinrunningclub"
+    },
+    {
+      "title": "Burnt Hare Events",
+      "icon": "\ud83d\udc07",
+      "color": "#8C0C20",
+      "description": "Our sister events site brings great races and trail runs to Hitchin and the surrounding Hertfordshire countryside throughout the year.",
+      "linkLabel": "Visit burnthare.com",
+      "linkUrl": "http://www.burnthare.com"
+    },
+    {
+      "title": "Strava Club",
+      "icon": "\u26a1",
+      "color": "#FC4C02",
+      "description": "Log your runs, kudos your clubmates, and see how the group is getting on. Every session and Sunday long run ends up here.",
+      "linkLabel": "View Strava Club",
+      "linkUrl": "https://www.strava.com/clubs/Hitchinrunningclub"
+    },
+    {
+      "title": "Spond",
+      "icon": "\ud83d\udcc5",
+      "color": "#6B6F76",
+      "description": "Spond is where all our events are organised and discussed \u2014 RSVP to socials, races and league fixtures, and get reminders before they happen.",
+      "linkLabel": "Open Spond",
+      "linkUrl": "#"
+    }
+  ],
   "links": {
     "strava": "https://www.strava.com/clubs/Hitchinrunningclub",
     "facebook": "https://www.facebook.com/hitchinrunningclub",
