@@ -6,7 +6,7 @@
     "established": "Proudly Hitchin-grown"
   },
   "stats": [
-    { "number": "EA & ARC", "label": "Affiliated" },
+    { "number": "100+", "label": "Active members" },
     { "number": "3", "label": "Sessions every week" },
     { "number": "10K", "label": "Typical club run distance" },
     { "number": "Est 2008", "label": "Proudly Hitchin-grown" }
@@ -16,7 +16,7 @@
       "day": "Monday",
       "title": "Intervals",
       "time": "7:00PM",
-      "description": "Structured speedwork at the track or around town, built to make race pace feel comfortable.",
+      "description": "Structured speedwork at the track and around town, built to make race pace feel comfortable.",
       "meet": "New location weekly (check Facebook/Spond for confirmation)"
     },
     {
@@ -37,7 +37,7 @@
   "membership": {
     "price": "\u00a335",
     "period": "/ year",
-    "description": "Membership includes EA & ARC affiliation, various running events, mid-week leagues, and a number of non-running socials each year such as a summer BBQ and Christmas do.",
+    "description": "Membership includes various running events, UK Athletics affiliated, mid-week leagues, and a number of non-running socials each year such as a summer BBQ and Christmas do.",
     "note": "Sign up via Facebook to say hello, then come along to your first session at St Mary's car park.",
     "joinSteps": [
       {
@@ -54,6 +54,18 @@
       }
     ]
   },
+  "videos": [
+    {
+      "title": "The Hitchin Monopoly Run",
+      "description": "Roll the dice, run the streets \u2014 highlights from our board-game-inspired club night.",
+      "embedUrl": "https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F4270366359872047%2F&show_text=false&width=476&t=0"
+    },
+    {
+      "title": "Timed Relays",
+      "description": "Fast legs, faster changeovers. Add your relay reel link here once you've got the embed URL.",
+      "embedUrl": ""
+    }
+  ],
   "eventBoxes": [
     {
       "title": "Mid-Week League",
@@ -67,6 +79,7 @@
       "title": "Chip Shop Challenge",
       "icon": "\ud83c\udf5f",
       "color": "#C9A24B",
+      "badge": "Fan favourite",
       "description": "A club favourite \u2014 run to the chip shop, eat your chips. Silly, sociable, and exactly the kind of thing the Hares do best.",
       "linkLabel": "Ask about the next one",
       "linkUrl": "https://www.facebook.com/hitchinrunningclub"
@@ -75,6 +88,7 @@
       "title": "Monopoly Run",
       "icon": "\ud83c\udfb2",
       "color": "#15161A",
+      "badge": "Annual event",
       "description": "Roll the dice and run the streets \u2014 our take on the classic board game turns Hitchin into a giant board with checkpoints and challenges along the way.",
       "linkLabel": "Find out more",
       "linkUrl": "https://www.facebook.com/hitchinrunningclub"
@@ -111,7 +125,7 @@
     "spond": "https://www.spond.com/"
   },
   "events": {
-    "description": "We run in a number of events under the banner of Hitchin Hares, including the Herts Winter Cross Country League and the Summer Mid-Week League. We're also linked with Burnt Hare, who bring great running events to Hitchin and the surrounding Hertfordshire countryside.",
+    "description": "We run at a number of events under the banner of Hitchin Hares, including the Herts Winter Cross Country League and the Summer Mid-Week League. We're also linked with Burnt Hare, who bring great running events to Hitchin and the surrounding Hertfordshire countryside.",
     "learnMoreUrl": "https://www.hitchinrunningclub.co.uk/club-runs"
   }
 }

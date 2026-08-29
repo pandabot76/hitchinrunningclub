@@ -123,6 +123,20 @@
   }
   .scroll-cue::after{content:""; width:1px; height:54px; background:#cfcdc6;}
 
+  /* FUN MARQUEE RIBBON */
+  .marquee-wrap{
+    background:var(--gold); overflow:hidden; padding:13px 0;
+    transform:rotate(-1.1deg); margin:-20px 0 0; position:relative; z-index:3;
+    box-shadow:0 6px 18px rgba(0,0,0,0.15);
+  }
+  .marquee-track{display:flex; width:max-content; animation:marquee 26s linear infinite;}
+  .marquee-track span{
+    font-family:'Anton'; font-size:1.05rem; text-transform:uppercase; letter-spacing:0.03em;
+    color:var(--ink); padding:0 20px; display:inline-flex; align-items:center; gap:10px; white-space:nowrap;
+  }
+  @keyframes marquee{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+  @media (prefers-reduced-motion: reduce){ .marquee-track{animation:none;} }
+
   /* STRIP STATS */
   .stats{ background:var(--ink); color:#fff; padding:36px 0; }
   .stats .wrap{display:flex; flex-wrap:wrap; justify-content:space-between; gap:24px;}
@@ -169,9 +183,17 @@
   .event-card{
     background:#fff; border:1px solid #e4e1d8; border-radius:6px;
     padding:32px 28px; display:flex; flex-direction:column; gap:14px;
-    transition:transform 0.2s ease, box-shadow 0.2s ease;
+    transition:transform 0.2s ease, box-shadow 0.2s ease; position:relative;
+    transform:rotate(var(--tilt, 0deg));
   }
-  .event-card:hover{transform:translateY(-4px); box-shadow:0 14px 30px rgba(21,22,26,0.08);}
+  .events-grid .event-card:nth-child(3n+2){--tilt: -1.3deg;}
+  .events-grid .event-card:nth-child(3n+3){--tilt: 1.1deg;}
+  .event-card:hover{transform:translateY(-4px) rotate(0deg); box-shadow:0 14px 30px rgba(21,22,26,0.08);}
+  .event-card .sticker{
+    position:absolute; top:-12px; right:-10px; background:var(--red); color:#fff;
+    font-family:'Bebas Neue'; font-size:0.8rem; letter-spacing:0.05em; text-transform:uppercase;
+    padding:7px 14px; border-radius:2px; transform:rotate(7deg); box-shadow:0 4px 10px rgba(0,0,0,0.18);
+  }
   .event-icon{
     width:54px; height:54px; border-radius:50%; flex-shrink:0;
     display:flex; align-items:center; justify-content:center; font-size:1.5rem;
@@ -184,6 +206,24 @@
     letter-spacing:0.08em; color:var(--red); text-decoration:none; display:inline-flex; align-items:center; gap:6px;
   }
   .event-card a.event-link:hover{color:var(--red-dark);}
+
+  /* CLUB VIDEOS */
+  .videos{background:#fff;}
+  .videos-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:32px;}
+  .video-card{
+    background:var(--fog); border:1px solid #e4e1d8; border-radius:8px;
+    padding:22px; text-align:center; transform:rotate(-0.8deg);
+  }
+  .video-card:nth-child(2n){transform:rotate(0.8deg);}
+  .video-card iframe{max-width:100%; border-radius:6px; display:block; margin:0 auto; background:#000;}
+  .video-card h3{font-family:'Anton'; font-size:1.2rem; text-transform:none; margin-top:16px;}
+  .video-card p{color:var(--slate); font-size:0.9rem; margin-top:6px;}
+  .video-placeholder{
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    height:280px; border:2px dashed #cfc9ba; border-radius:6px; color:var(--slate);
+    font-size:0.9rem; gap:10px; background:#fff;
+  }
+  .video-placeholder .icon{font-size:2rem;}
 
   /* JOIN */
   .join{background:var(--red); color:#fff; position:relative; overflow:hidden;}
@@ -241,6 +281,7 @@
     .events-grid{grid-template-columns:repeat(2, 1fr);}
   }
   @media (max-width: 900px){
+    .videos-grid{grid-template-columns:1fr;}
     .nav-links{display:none;}
     .burger{display:flex;}
     .about{grid-template-columns:1fr;}
@@ -282,7 +323,7 @@
 </div>
 
 <header class="hero">
-  <img class="bg" src="images/unnamed-4.jpg" alt="Runners through the fog at dawn">
+  <img class="bg" src="images/hero-sunset-field.jpg" alt="Hitchin Hares runner reaching up to the sunset in a golden field">
   <div class="hero-content">
     <span class="eyebrow">North Herts &middot; Friendly &amp; all-pace</span>
     <h1>Run further<br>with the <em>Hares</em></h1>
@@ -295,6 +336,13 @@
   <div class="scroll-cue">Scroll</div>
 </header>
 
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>🏃 Run</span><span>🍟 Chip Shop Challenge</span><span>🎲 Monopoly Run</span><span>🌅 Sunrise Miles</span><span>🏆 Chase the PB</span><span>🍻 Proper Socials</span>
+    <span>🏃 Run</span><span>🍟 Chip Shop Challenge</span><span>🎲 Monopoly Run</span><span>🌅 Sunrise Miles</span><span>🏆 Chase the PB</span><span>🍻 Proper Socials</span>
+  </div>
+</div>
+
 <div class="stats">
   <div class="wrap" id="statsWrap"></div>
 </div>
@@ -304,13 +352,13 @@
     <div class="about-copy">
       <span class="eyebrow">Who we are</span>
       <h2 style="margin-top:10px; font-size:clamp(2.1rem, 4.2vw, 3.4rem);">A club built around the run, not the result</h2>
-      <p>The Hitchin Running Club (the Hitchin Hares) are a friendly bunch who like to meet up socially for some running. It's a great way to meet like-minded people, have some fun, and get fit in the process.</p>
+      <p>Hitchin Running Club (the Hitchin Hares) is a friendly bunch who like to meet up socially for some running &mdash; some of us take it more seriously than others. It's a great way to meet like-minded people, have some fun, and get fit in the process.</p>
       <p>No trials, no minimum pace, no judgement. Sign up via Facebook to say hello before your first session.</p>
       <p id="eventsDescription">Loading club events&hellip;</p>
     </div>
     <div class="about-img">
       <img src="images/unnamed-2.jpg" alt="Club runners crossing a wheat field at sunset">
-      <div class="tag">EVERY RUN ENDS WITH GOOD COMPANY</div>
+      <div class="tag">DISCOVERING HITCHIN ONE RUN AT A TIME </div>
     </div>
   </div>
 </section>
@@ -334,6 +382,17 @@
       <p>From weekly leagues to our sister events site, here's everywhere the Hares turn up throughout the year.</p>
     </div>
     <div class="events-grid" id="eventBoxesGrid"></div>
+  </div>
+</section>
+
+<section id="videos" class="videos">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Hares in action</span>
+      <h2>Watch us in action</h2>
+      <p>Highlights from our sillier club nights &mdash; because running should be fun, not just fast.</p>
+    </div>
+    <div class="videos-grid" id="videosGrid"></div>
   </div>
 </section>
 
@@ -362,14 +421,25 @@
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">From the club</span>
-      <h2>Mud, medals and mince pies</h2>
-      <p>A look at life in the club &mdash; from foggy Sunday long runs to the Christmas social by the fountain.</p>
+      <h2>Discovering Hitchin One Run At A Time </h2>
+      <p>A look at life in the club &mdash; from foggy Sunday long runs to the Christmas socials.</p>
     </div>
     <div class="gallery">
-      <a href="#"><img src="images/unnamed-4.jpg" alt="Foggy morning run"></a>
+      <a href="#"><img src="images/unnamed-4.jpg" alt="Foggy morning run across the fields"></a>
       <a href="#"><img src="images/unnamed-2.jpg" alt="Wheat field summer run"></a>
       <a href="#"><img src="images/unnamed.jpg" alt="Christmas social by the fountain"></a>
       <a href="#"><img src="images/unnamed-5.jpg" alt="Cross country race team"></a>
+      <a href="#"><img src="images/club-sunset-hand.jpg" alt="Runner catching the sunset on a summer evening run"></a>
+      <a href="#"><img src="images/club-bridge-underpass.jpg" alt="Club group posing under a canal bridge"></a>
+      <a href="#"><img src="images/club-maize-maze.jpg" alt="Club runner heading through a maize maze"></a>
+      <a href="#"><img src="images/club-river-swim.jpg" alt="Cooling off in the river after a summer club run"></a>
+      <a href="#"><img src="images/club-rainbow-race.jpg" alt="Team photo with a rainbow on race day"></a>
+      <a href="#"><img src="images/club-priory-church.jpg" alt="Club group in front of Hitchin's priory church"></a>
+      <a href="#"><img src="images/club-night-hilltop.jpg" alt="Night run overlooking Hitchin town centre"></a>
+      <a href="#"><img src="images/club-pub-social.jpg" alt="Post-run pub social with the club"></a>
+      <a href="#"><img src="images/club-monopoly-board.jpg" alt="Hitchin Hares Monopoly board and a well-earned pint"></a>
+      <a href="#"><img src="images/club-chip-shop.jpg" alt="Chip Shop Challenge spoils on a night run"></a>
+      <a href="#"><img src="images/club-track-night.jpg" alt="Track intervals session under floodlights"></a>
     </div>
   </div>
 </section>
@@ -470,12 +540,27 @@
     const eventBoxesGrid = document.getElementById('eventBoxesGrid');
     eventBoxesGrid.innerHTML = cfg.eventBoxes.map(e => `
       <div class="event-card">
+        ${e.badge ? `<span class="sticker">${e.badge}</span>` : ''}
         <div class="event-icon" style="background:${e.color || 'var(--red)'};">${e.icon || ''}</div>
         <h3>${e.title}</h3>
         <p>${e.description}</p>
         <a class="event-link" href="${e.linkUrl}" target="_blank">${e.linkLabel} &rarr;</a>
       </div>
     `).join('');
+
+    // Club videos (configurable, with placeholder for anything not yet added)
+    const videosGrid = document.getElementById('videosGrid');
+    if (videosGrid && cfg.videos) {
+      videosGrid.innerHTML = cfg.videos.map(v => `
+        <div class="video-card">
+          ${v.embedUrl
+            ? `<iframe src="${v.embedUrl}" width="476" height="476" style="border:none;overflow:hidden;max-width:100%;" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>`
+            : `<div class="video-placeholder"><span class="icon">🎬</span><span>Video coming soon</span></div>`}
+          <h3>${v.title}</h3>
+          <p>${v.description}</p>
+        </div>
+      `).join('');
+    }
 
     // Join steps
     const joinSteps = document.getElementById('joinSteps');
