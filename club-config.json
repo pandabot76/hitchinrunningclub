@@ -6,7 +6,7 @@
     "established": "Proudly Hitchin-grown"
   },
   "stats": [
-    { "number": "120+", "label": "Active members" },
+    { "number": "50+", "label": "Active members" },
     { "number": "3", "label": "Sessions every week" },
     { "number": "10K", "label": "Typical club run distance" },
     { "number": "Est 2008", "label": "Proudly Hitchin-grown" }
@@ -16,14 +16,14 @@
       "day": "Monday",
       "title": "Intervals",
       "time": "7:00PM",
-      "description": "Structured speedwork at the track, built to make race pace feel comfortable.",
+      "description": "Speedwork at the track or around town.",
       "meet": "New location weekly (check Facebook/Spond for confirmation)"
     },
     {
       "day": "Wednesday",
       "title": "Beginners & Club Run",
       "time": "6:30PM (beginners) / 7:00PM (club)",
-      "description": "In summer this heads out into local countryside, in winter it stays around town. We aim to cover around 10km as a club run.",
+      "description": "In summer this heads out into local countryside, in winter it stays around town. We aim to cover around 10km as a club run.  Let us know via Facebook or Spond before turning up",
       "meet": "St Mary's car park, Hitchin"
     },
     {
@@ -125,7 +125,7 @@
     "spond": "https://www.spond.com/"
   },
   "events": {
-    "description": "We run a number of events under the banner of Hitchin Hares, including the Herts Winter Cross Country League and the Summer Mid-Week League. We're also linked with Burnt Hare, who bring great running events to Hitchin and the surrounding Hertfordshire countryside.",
+    "description": "We run a number of events under the banner of Hitchin Hares, including competing in the Herts Winter Cross Country League and the Summer Mid-Week League. We're also linked with Burnt Hare, who bring great running events to Hitchin and the surrounding Hertfordshire countryside.",
     "learnMoreUrl": "https://www.hitchinrunningclub.co.uk/club-runs"
   }
 }
