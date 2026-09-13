@@ -5,35 +5,38 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hitchin Running Club</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --red: #C8102E;
-    --red-dark: #8C0C20;
-    --ink: #15161A;
-    --fog: #EFEDE7;
-    --paper: #FAF8F4;
-    --slate: #6B6F76;
-    --gold: #C9A24B;
+    --red: #EF2D3E;
+    --red-dark: #B01A2A;
+    --ink: #1B1720;
+    --fog: #FDEAEA;
+    --paper: #FFF9F6;
+    --slate: #6B6165;
+    --gold: #EF2D3E;
+    --teal: #EF2D3E;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
   body{
     background:var(--paper);
     color:var(--ink);
-    font-family:'Inter', sans-serif;
+    font-family:'Nunito', sans-serif;
     line-height:1.6;
     overflow-x:hidden;
   }
   h1,h2,h3,.display{
-    font-family:'Anton', sans-serif;
+    font-family:'Baloo 2', sans-serif;
     text-transform:uppercase;
-    letter-spacing:0.02em;
-    line-height:0.95;
+    letter-spacing:0.01em;
+    line-height:0.98;
+    font-weight:800;
   }
   .eyebrow{
-    font-family:'Bebas Neue', sans-serif;
-    letter-spacing:0.25em;
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    letter-spacing:0.18em;
     text-transform:uppercase;
     font-size:0.85rem;
     color:var(--red);
@@ -41,6 +44,9 @@
   a{color:inherit;}
   img{display:block; max-width:100%;}
   .wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
+  .squiggle-wrap{position:relative; display:inline-block;}
+  .squiggle{position:absolute; left:-2%; bottom:-0.14em; width:104%; height:0.28em; overflow:visible;}
+  .squiggle path{stroke:#fff; stroke-width:7; fill:none; stroke-linecap:round;}
 
   /* NAV */
   nav{
@@ -53,19 +59,21 @@
   nav.scrolled{ background:rgba(21,22,26,0.92); backdrop-filter:blur(6px); padding:10px 28px;}
   .nav-brand{display:flex; align-items:center; gap:10px;}
   .nav-brand img{height:40px; width:40px;}
-  .nav-brand span{font-family:'Bebas Neue'; letter-spacing:0.1em; color:#fff; font-size:1.1rem;}
+  .nav-brand span{font-family:'Baloo 2'; font-weight:700; letter-spacing:0.04em; color:#fff; font-size:1.15rem;}
   .nav-links{display:flex; gap:28px; list-style:none;}
   .nav-links a{
-    color:#fff; text-decoration:none; font-size:0.82rem;
-    text-transform:uppercase; letter-spacing:0.12em; font-weight:600;
+    color:#fff; text-decoration:none; font-size:0.85rem; font-family:'Nunito';
+    text-transform:uppercase; letter-spacing:0.1em; font-weight:700;
     opacity:0.85; transition:opacity 0.2s;
   }
   .nav-links a:hover{opacity:1; color:var(--gold);}
   .nav-cta{
-    background:var(--red); color:#fff; padding:9px 18px; border-radius:2px;
-    font-size:0.78rem; text-transform:uppercase; letter-spacing:0.1em; font-weight:700;
-    text-decoration:none;
+    background:var(--red); color:#fff; padding:9px 20px; border-radius:999px;
+    border:2px solid #fff;
+    font-size:0.8rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:800; font-family:'Nunito';
+    text-decoration:none; transition:transform 0.15s ease;
   }
+  .nav-cta:hover{transform:translateY(-2px) rotate(-1deg);}
   .burger{display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none;}
   .burger span{width:24px; height:2px; background:#fff;}
   .mobile-menu{
@@ -73,7 +81,7 @@
     flex-direction:column; align-items:center; justify-content:center; gap:28px;
   }
   .mobile-menu.open{display:flex;}
-  .mobile-menu a{color:#fff; text-decoration:none; font-family:'Anton'; font-size:1.6rem; text-transform:uppercase;}
+  .mobile-menu a{color:#fff; text-decoration:none; font-family:'Baloo 2'; font-weight:800; font-size:1.6rem; text-transform:uppercase;}
   .mobile-close{position:absolute; top:24px; right:28px; background:none; border:none; color:#fff; font-size:1.8rem; cursor:pointer;}
 
   /* HERO */
@@ -103,18 +111,17 @@
   .hero-actions{display:flex; gap:14px; margin-top:34px; flex-wrap:wrap;}
   .btn{
     display:inline-flex; align-items:center; gap:8px;
-    padding:15px 28px; text-decoration:none; font-weight:700;
-    text-transform:uppercase; font-size:0.82rem; letter-spacing:0.1em;
-    border-radius:2px; transition:transform 0.15s ease, background 0.2s ease;
-    border:none; cursor:pointer; font-family:inherit;
+    padding:15px 30px; text-decoration:none; font-weight:800;
+    text-transform:uppercase; font-size:0.85rem; letter-spacing:0.06em;
+    border-radius:999px; transition:transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease;
+    cursor:pointer; font-family:'Nunito';
   }
-  .btn:hover{transform:translateY(-2px);}
-  .btn-primary{background:var(--red); color:#fff;}
-  .btn-primary:hover{background:var(--red-dark);}
-  .btn-outline{border:1.5px solid rgba(255,255,255,0.55); color:#fff; background:transparent;}
-  .btn-outline:hover{border-color:#fff; background:rgba(255,255,255,0.08);}
-  .btn-facebook{background:#1877F2; color:#fff;}
-  .btn-facebook:hover{background:#1462c4;}
+  .btn-primary{background:var(--red); color:#fff; border:3px solid var(--ink); box-shadow:5px 5px 0 var(--ink);}
+  .btn-primary:hover{background:var(--red-dark); transform:translate(3px,3px); box-shadow:2px 2px 0 var(--ink);}
+  .btn-outline{border:3px solid #fff; color:#fff; background:transparent;}
+  .btn-outline:hover{background:#fff; color:var(--ink); transform:translateY(-2px);}
+  .btn-facebook{background:#1877F2; color:#fff; border:3px solid var(--ink); box-shadow:5px 5px 0 var(--ink);}
+  .btn-facebook:hover{background:#1462c4; transform:translate(3px,3px); box-shadow:2px 2px 0 var(--ink);}
 
   .scroll-cue{
     position:absolute; right:32px; bottom:32px; z-index:2;
@@ -125,24 +132,34 @@
 
   /* FUN MARQUEE RIBBON */
   .marquee-wrap{
-    background:var(--gold); overflow:hidden; padding:13px 0;
-    transform:rotate(-1.1deg); margin:-20px 0 0; position:relative; z-index:3;
-    box-shadow:0 6px 18px rgba(0,0,0,0.15);
+    background:#fff; overflow:hidden; padding:13px 0;
+    transform:rotate(-1.4deg); margin:-20px 0 0; position:relative; z-index:3;
+    border-top:3px solid var(--ink); border-bottom:3px solid var(--ink);
+    box-shadow:0 6px 0 var(--ink);
   }
   .marquee-track{display:flex; width:max-content; animation:marquee 26s linear infinite;}
   .marquee-track span{
-    font-family:'Anton'; font-size:1.05rem; text-transform:uppercase; letter-spacing:0.03em;
-    color:var(--ink); padding:0 20px; display:inline-flex; align-items:center; gap:10px; white-space:nowrap;
+    font-family:'Baloo 2'; font-weight:700; font-size:1.05rem; text-transform:uppercase; letter-spacing:0.02em;
+    color:var(--red); padding:0 20px; display:inline-flex; align-items:center; gap:10px; white-space:nowrap;
   }
+  .marquee-track img.dingbat{height:26px; width:26px; animation:spin 6s linear infinite;}
+  @keyframes spin{ from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
   @keyframes marquee{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
   @media (prefers-reduced-motion: reduce){ .marquee-track{animation:none;} }
 
   /* STRIP STATS */
-  .stats{ background:var(--ink); color:#fff; padding:36px 0; }
-  .stats .wrap{display:flex; flex-wrap:wrap; justify-content:space-between; gap:24px;}
-  .stat{flex:1; min-width:140px; text-align:left; border-left:3px solid var(--red); padding-left:16px;}
-  .stat .num{font-family:'Anton'; font-size:2.4rem; line-height:1;}
-  .stat .label{font-size:0.78rem; text-transform:uppercase; letter-spacing:0.1em; color:#aeb0b5; margin-top:6px;}
+  .stats{
+    background:var(--ink); color:#fff; padding:40px 0;
+    background-image:radial-gradient(rgba(255,255,255,0.09) 1.6px, transparent 1.6px);
+    background-size:16px 16px;
+  }
+  .stats .wrap{display:flex; flex-wrap:wrap; justify-content:space-between; gap:18px;}
+  .stat{
+    flex:1; min-width:150px; text-align:left; padding:16px 18px;
+    border:2px solid var(--gold); border-radius:16px; background:rgba(255,255,255,0.04);
+  }
+  .stat .num{font-family:'Baloo 2'; font-weight:800; font-size:2.3rem; line-height:1; color:var(--gold);}
+  .stat .label{font-size:0.78rem; font-family:'Nunito'; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#e6e3dc; margin-top:6px;}
 
   /* SECTION GENERIC */
   section{padding:110px 0;}
@@ -155,11 +172,16 @@
   .about{display:grid; grid-template-columns:1.1fr 0.9fr; gap:60px; align-items:center;}
   .about-copy p{color:#3c3d40; margin-bottom:18px; font-size:1.02rem;}
   .about-img{position:relative;}
-  .about-img img{border-radius:3px; width:100%; height:480px; object-fit:cover;}
+  .about-img img{
+    border-radius:14px; width:100%; height:480px; object-fit:cover;
+    border:6px solid #fff; outline:3px solid var(--ink); box-shadow:8px 8px 0 var(--ink);
+    transform:rotate(-1.6deg);
+  }
   .about-img .tag{
     position:absolute; bottom:-22px; left:-22px; background:var(--red); color:#fff;
-    padding:18px 22px; max-width:230px; font-family:'Bebas Neue'; font-size:1rem;
-    letter-spacing:0.04em; box-shadow:0 12px 28px rgba(0,0,0,0.18);
+    padding:16px 20px; max-width:230px; font-family:'Baloo 2'; font-weight:700; font-size:1rem;
+    letter-spacing:0.01em; border:3px solid var(--ink); border-radius:16px;
+    box-shadow:5px 5px 0 var(--ink); transform:rotate(3deg);
   }
 
   /* SESSIONS TIMETABLE */
@@ -167,60 +189,66 @@
   .sessions .section-head p{color:#b9bbc0;}
   .timetable{display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.12);}
   .session-card{background:var(--ink); padding:34px 28px; position:relative;}
-  .session-card .day{font-family:'Bebas Neue'; color:var(--gold); font-size:0.85rem; letter-spacing:0.18em; text-transform:uppercase;}
+  .session-card .day{font-family:'Baloo 2'; font-weight:700; color:#fff; font-size:0.9rem; letter-spacing:0.14em; text-transform:uppercase; opacity:0.7;}
   .session-card h3{font-size:1.5rem; margin-top:10px; color:#fff;}
-  .session-card .time{font-family:'Anton'; font-size:1.7rem; color:var(--red); margin-top:14px;}
+  .session-card .time{font-family:'Baloo 2'; font-weight:800; font-size:1.7rem; color:var(--red); margin-top:14px;}
   .session-card .desc{color:#b9bbc0; margin-top:12px; font-size:0.94rem;}
   .session-card .meet{margin-top:18px; font-size:0.82rem; color:#85878d; text-transform:uppercase; letter-spacing:0.06em;}
   .new-flag{
-    display:inline-block; background:var(--red); color:#fff; font-family:'Bebas Neue';
-    font-size:0.7rem; letter-spacing:0.12em; padding:3px 9px; border-radius:20px; margin-left:10px; vertical-align:middle;
+    display:inline-block; background:var(--red); color:#fff; font-family:'Baloo 2'; font-weight:700;
+    font-size:0.72rem; letter-spacing:0.04em; padding:3px 11px; border-radius:20px; margin-left:10px; vertical-align:middle;
+    border:2px solid var(--ink);
   }
 
   /* CLUB EVENTS GRID */
   .race{background:var(--fog);}
-  .events-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:22px;}
+  .events-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:26px;}
   .event-card{
-    background:#fff; border:1px solid #e4e1d8; border-radius:6px;
+    background:#fff; border:3px solid var(--ink); border-radius:22px;
     padding:32px 28px; display:flex; flex-direction:column; gap:14px;
     transition:transform 0.2s ease, box-shadow 0.2s ease; position:relative;
     transform:rotate(var(--tilt, 0deg));
+    box-shadow:6px 6px 0 var(--ink);
   }
-  .events-grid .event-card:nth-child(3n+2){--tilt: -1.3deg;}
-  .events-grid .event-card:nth-child(3n+3){--tilt: 1.1deg;}
-  .event-card:hover{transform:translateY(-4px) rotate(0deg); box-shadow:0 14px 30px rgba(21,22,26,0.08);}
+  .events-grid .event-card:nth-child(3n+2){--tilt: -1.6deg;}
+  .events-grid .event-card:nth-child(3n+3){--tilt: 1.3deg;}
+  .event-card:hover{transform:translateY(-6px) rotate(0deg); box-shadow:10px 10px 0 var(--ink);}
   .event-card .sticker{
-    position:absolute; top:-12px; right:-10px; background:var(--red); color:#fff;
-    font-family:'Bebas Neue'; font-size:0.8rem; letter-spacing:0.05em; text-transform:uppercase;
-    padding:7px 14px; border-radius:2px; transform:rotate(7deg); box-shadow:0 4px 10px rgba(0,0,0,0.18);
+    position:absolute; top:-14px; right:-12px; background:var(--red); color:#fff;
+    font-family:'Baloo 2'; font-weight:700; font-size:0.8rem; letter-spacing:0.02em; text-transform:uppercase;
+    padding:7px 14px; border-radius:999px; transform:rotate(7deg);
+    border:2.5px solid var(--ink); box-shadow:3px 3px 0 var(--ink);
   }
   .event-icon{
-    width:54px; height:54px; border-radius:50%; flex-shrink:0;
+    width:56px; height:56px; border-radius:50%; flex-shrink:0;
     display:flex; align-items:center; justify-content:center; font-size:1.5rem;
+    border:3px solid var(--ink);
   }
   .event-icon svg{width:26px; height:26px; fill:#fff;}
-  .event-card h3{font-family:'Anton'; font-size:1.25rem; text-transform:none; margin-top:2px;}
+  .event-card h3{font-family:'Baloo 2'; font-weight:700; font-size:1.3rem; text-transform:none; margin-top:2px;}
   .event-card p{color:var(--slate); font-size:0.92rem; flex-grow:1;}
   .event-card a.event-link{
-    margin-top:4px; font-weight:700; font-size:0.82rem; text-transform:uppercase;
-    letter-spacing:0.08em; color:var(--red); text-decoration:none; display:inline-flex; align-items:center; gap:6px;
+    margin-top:4px; font-weight:800; font-size:0.85rem; text-transform:uppercase;
+    letter-spacing:0.04em; color:var(--red); text-decoration:none; display:inline-flex; align-items:center; gap:6px;
   }
   .event-card a.event-link:hover{color:var(--red-dark);}
 
   /* CLUB VIDEOS */
   .videos{background:#fff;}
-  .videos-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:32px;}
+  .videos-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:36px;}
   .video-card{
-    background:var(--fog); border:1px solid #e4e1d8; border-radius:8px;
-    padding:22px; text-align:center; transform:rotate(-0.8deg);
+    background:var(--fog); border:3px solid var(--ink); border-radius:22px;
+    padding:22px; text-align:center; transform:rotate(-1.2deg);
+    box-shadow:6px 6px 0 var(--ink); transition:transform 0.2s ease, box-shadow 0.2s ease;
   }
-  .video-card:nth-child(2n){transform:rotate(0.8deg);}
-  .video-card iframe{max-width:100%; border-radius:6px; display:block; margin:0 auto; background:#000;}
-  .video-card h3{font-family:'Anton'; font-size:1.2rem; text-transform:none; margin-top:16px;}
+  .video-card:nth-child(2n){transform:rotate(1.2deg);}
+  .video-card:hover{transform:translateY(-6px) rotate(0deg); box-shadow:10px 10px 0 var(--ink);}
+  .video-card iframe{max-width:100%; border-radius:14px; display:block; margin:0 auto; background:#000; border:3px solid var(--ink);}
+  .video-card h3{font-family:'Baloo 2'; font-weight:700; font-size:1.25rem; text-transform:none; margin-top:16px;}
   .video-card p{color:var(--slate); font-size:0.9rem; margin-top:6px;}
   .video-placeholder{
     display:flex; flex-direction:column; align-items:center; justify-content:center;
-    height:280px; border:2px dashed #cfc9ba; border-radius:6px; color:var(--slate);
+    height:280px; border:3px dashed var(--ink); border-radius:14px; color:var(--slate);
     font-size:0.9rem; gap:10px; background:#fff;
   }
   .video-placeholder .icon{font-size:2rem;}
@@ -228,42 +256,55 @@
   /* JOIN */
   .join{background:var(--red); color:#fff; position:relative; overflow:hidden;}
   .join::before{
-    content:"HITCHIN"; position:absolute; right:-40px; bottom:-60px;
-    font-family:'Anton'; font-size:14rem; color:rgba(255,255,255,0.06); line-height:1; white-space:nowrap;
+    content:""; position:absolute; right:-60px; bottom:-80px; width:520px; height:520px;
+    background:url('images/1782804209459_image.png') center/contain no-repeat;
+    opacity:0.08; transform:rotate(-8deg); pointer-events:none;
   }
   .join .wrap{position:relative; z-index:1;}
   .join-grid{display:grid; grid-template-columns:1fr 1fr; gap:50px;}
   .join h2{font-size:clamp(2.1rem, 4.2vw, 3.2rem); color:#fff;}
-  .join .eyebrow{color:#FFD9DD;}
+  .join .eyebrow{color:#fff;}
   .join p{margin-top:16px; max-width:480px; color:#FFE3E6;}
   .steps{list-style:none; margin-top:28px; display:flex; flex-direction:column; gap:18px;}
   .steps li{display:flex; gap:16px; align-items:flex-start;}
   .steps .n{
-    font-family:'Anton'; font-size:1.1rem; background:rgba(255,255,255,0.16);
-    width:36px; height:36px; flex-shrink:0; display:flex; align-items:center; justify-content:center; border-radius:50%;
+    font-family:'Baloo 2'; font-weight:800; font-size:1.1rem; background:#fff; color:var(--red);
+    width:38px; height:38px; flex-shrink:0; display:flex; align-items:center; justify-content:center;
+    border-radius:50%; border:3px solid var(--ink); box-shadow:3px 3px 0 var(--ink);
   }
-  .steps .t{font-weight:600;}
+  .steps .t{font-weight:700; font-family:'Nunito';}
   .steps .d{color:#FFE3E6; font-size:0.92rem; margin-top:2px;}
-  .join-card{ background:#fff; color:var(--ink); border-radius:6px; padding:38px; align-self:start; }
-  .join-card h3{font-family:'Anton'; font-size:1.6rem; text-transform:none;}
+  .join-card{
+    background:#fff; color:var(--ink); border-radius:22px; padding:38px; align-self:start;
+    border:3px solid var(--ink); box-shadow:8px 8px 0 var(--ink); transform:rotate(1.2deg);
+  }
+  .join-card h3{font-family:'Baloo 2'; font-weight:700; font-size:1.6rem; text-transform:none;}
   .join-card p{color:var(--slate); margin-top:10px; font-size:0.94rem;}
   .join-card .btn{width:100%; justify-content:center; margin-top:14px;}
-  .join-card .price{font-family:'Anton'; font-size:2.6rem; margin-top:20px;}
-  .join-card .price span{font-family:'Inter'; font-size:0.95rem; color:var(--slate); font-weight:400; text-transform:none;}
+  .join-card .price{font-family:'Baloo 2'; font-weight:800; font-size:2.6rem; margin-top:20px; color:var(--red);}
+  .join-card .price span{font-family:'Nunito'; font-size:0.95rem; color:var(--slate); font-weight:600; text-transform:none;}
 
   /* COMMUNITY GALLERY */
-  .gallery{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:10px;}
-  .gallery img{width:100%; height:230px; object-fit:cover; border-radius:3px; transition:transform 0.3s ease;}
-  .gallery a{overflow:hidden; border-radius:3px; display:block;}
-  .gallery a:hover img{transform:scale(1.06);}
+  .gallery{display:grid; grid-template-columns:repeat(4,1fr); gap:26px; margin-top:10px;}
+  .gallery a{
+    background:#fff; padding:8px 8px 20px; border:3px solid var(--ink); border-radius:10px;
+    box-shadow:5px 5px 0 var(--ink); display:block; overflow:visible;
+    transform:rotate(var(--gtilt, 0deg)); transition:transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .gallery a:nth-child(4n+1){--gtilt: -1.6deg;}
+  .gallery a:nth-child(4n+2){--gtilt: 1deg;}
+  .gallery a:nth-child(4n+3){--gtilt: -0.8deg;}
+  .gallery a:nth-child(4n+4){--gtilt: 1.4deg;}
+  .gallery a:hover{transform:rotate(0deg) translateY(-4px); box-shadow:8px 8px 0 var(--ink);}
+  .gallery img{width:100%; height:210px; object-fit:cover; border-radius:4px;}
 
   /* FOOTER */
   footer{background:var(--ink); color:#cfd0d4; padding:70px 0 30px;}
   .foot-top{display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:40px; padding-bottom:50px; border-bottom:1px solid rgba(255,255,255,0.1);}
   .foot-brand{display:flex; align-items:center; gap:12px; margin-bottom:14px;}
   .foot-brand img{height:46px;}
-  .foot-brand span{font-family:'Bebas Neue'; letter-spacing:0.08em; font-size:1.2rem; color:#fff;}
-  .foot-col h4{font-size:0.8rem; text-transform:uppercase; letter-spacing:0.12em; color:#fff; margin-bottom:16px;}
+  .foot-brand span{font-family:'Baloo 2'; font-weight:700; letter-spacing:0.02em; font-size:1.25rem; color:#fff;}
+  .foot-col h4{font-size:0.8rem; text-transform:uppercase; letter-spacing:0.12em; color:#fff; margin-bottom:16px; font-family:'Baloo 2'; font-weight:700;}
   .foot-col ul{list-style:none; display:flex; flex-direction:column; gap:10px;}
   .foot-col a{text-decoration:none; color:#aeb0b5; font-size:0.92rem;}
   .foot-col a:hover{color:#fff;}
@@ -326,7 +367,7 @@
   <img class="bg" src="images/hero-sunset-field.jpg" alt="Hitchin Hares runner reaching up to the sunset in a golden field">
   <div class="hero-content">
     <span class="eyebrow">North Herts &middot; Friendly &amp; all-pace</span>
-    <h1>Run further<br>with the <em>Hares</em></h1>
+    <h1>Run further<br>with the <span class="squiggle-wrap"><em>Hares</em><svg class="squiggle" viewBox="0 0 200 20" preserveAspectRatio="none"><path d="M2 12 C 30 2, 55 20, 85 10 S 140 2, 170 12 S 195 18, 198 10"/></svg></span></h1>
     <p class="lede" id="heroTagline">Loading&hellip;</p>
     <div class="hero-actions">
       <a id="heroFacebookBtn" href="#" target="_blank" class="btn btn-facebook">Join us on Facebook</a>
@@ -338,8 +379,8 @@
 
 <div class="marquee-wrap">
   <div class="marquee-track">
-    <span>🏃 Run</span><span>🍟 Chip Shop Challenge</span><span>🎲 Monopoly Run</span><span>🌅 Sunrise Miles</span><span>🏆 Chase the PB</span><span>🍻 Proper Socials</span>
-    <span>🏃 Run</span><span>🍟 Chip Shop Challenge</span><span>🎲 Monopoly Run</span><span>🌅 Sunrise Miles</span><span>🏆 Chase the PB</span><span>🍻 Proper Socials</span>
+    <span><img class="dingbat" src="images/1782804209459_image.png" alt="">Run</span><span><img class="dingbat" src="images/1782804209459_image.png" alt="">Chip Shop Challenge</span><span><img class="dingbat" src="images/1782804209459_image.png" alt="">Monopoly Run</span><span><img class="dingbat" src="images/1782804209459_image.png" alt="">Sunrise Miles</span><span><img class="dingbat" src="images/1782804209459_image.png" alt="">Chase the PB</span><span><img class="dingbat" src="images/1782804209459_image.png" alt="">Proper Socials</span>
+    <span><img class="dingbat" src="images/1782804209459_image.png" alt="">Run</span><span><img class="dingbat" src="images/1782804209459_image.png" alt="">Chip Shop Challenge</span><span><img class="dingbat" src="images/1782804209459_image.png" alt="">Monopoly Run</span><span><img class="dingbat" src="images/1782804209459_image.png" alt="">Sunrise Miles</span><span><img class="dingbat" src="images/1782804209459_image.png" alt="">Chase the PB</span><span><img class="dingbat" src="images/1782804209459_image.png" alt="">Proper Socials</span>
   </div>
 </div>
 
@@ -351,15 +392,14 @@
   <div class="wrap about">
     <div class="about-copy">
       <span class="eyebrow">Who we are</span>
-      <h2 style="margin-top:10px; font-size:clamp(2.1rem, 4.2vw, 3.4rem);">A club built around the run</h2>
-      <p></P>
+      <h2 style="margin-top:10px; font-size:clamp(2.1rem, 4.2vw, 3.4rem);">A club built around the run, not the result</h2>
       <p>Hitchin Running Club (the Hitchin Hares) is a friendly bunch who like to meet up socially for some running &mdash; some of us take it more seriously than others. It's a great way to meet like-minded people, have some fun, and get fit in the process.</p>
       <p>No trials, no minimum pace, no judgement. Sign up via Facebook to say hello before your first session.</p>
       <p id="eventsDescription">Loading club events&hellip;</p>
     </div>
     <div class="about-img">
       <img src="images/unnamed-2.jpg" alt="Club runners crossing a wheat field at sunset">
-      <div class="tag">DISCOVERING HITCHIN ONE RUN AT A TIME </div>
+      <div class="tag">EVERY RUN ENDS WITH GOOD COMPANY</div>
     </div>
   </div>
 </section>
@@ -422,8 +462,8 @@
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">From the club</span>
-      <h2>Running Hitchin </h2>
-      <p>A look at life in the club &mdash; from foggy Sunday long runs to the Christmas socials.</p>
+      <h2>Mud, medals and mince pies</h2>
+      <p>A look at life in the club &mdash; from foggy Sunday long runs to the Christmas social by the fountain.</p>
     </div>
     <div class="gallery">
       <a href="#"><img src="images/unnamed-4.jpg" alt="Foggy morning run across the fields"></a>
