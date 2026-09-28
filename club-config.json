@@ -2,14 +2,26 @@
   "club": {
     "name": "Hitchin Running Club",
     "shortName": "Hitchin Hares",
-    "tagline": "A friendly, all-pace running club based in Hitchin. Three sessions a week, every distance from first 5K to marathon PB, and a club that turns up for each other \u2014 rain, shine, or thick winter fog.",
+    "tagline": "A friendly, all-pace running club based in Hitchin. Three sessions a week, every distance from first 5K to marathon PB, and a club that turns up for each other — rain, shine, or thick winter fog.",
     "established": "Proudly Hitchin-grown"
   },
   "stats": [
-    { "number": "50+", "label": "Active members" },
-    { "number": "3", "label": "Sessions every week" },
-    { "number": "10K", "label": "Typical club run distance" },
-    { "number": "Est 2008", "label": "Proudly Hitchin-grown" }
+    {
+      "number": "50+",
+      "label": "Active members"
+    },
+    {
+      "number": "3",
+      "label": "Sessions every week"
+    },
+    {
+      "number": "10K",
+      "label": "Typical club run distance"
+    },
+    {
+      "number": "Est 2008",
+      "label": "Proudly Hitchin-grown"
+    }
   ],
   "sessions": [
     {
@@ -35,7 +47,7 @@
     }
   ],
   "membership": {
-    "price": "\u00a335",
+    "price": "£35",
     "period": "/ year",
     "description": "Membership includes various running events, mid-week leagues, and a number of non-running socials each year such as a summer BBQ and Christmas do.",
     "note": "Sign up via Facebook to say hello, then come along to your first session at St Mary's car park.",
@@ -57,7 +69,7 @@
   "videos": [
     {
       "title": "The Hitchin Monopoly Run",
-      "description": "Roll the dice, run the streets \u2014 highlights from our board-game-inspired club night.",
+      "description": "Roll the dice, run the streets — highlights from our board-game-inspired club night.",
       "embedUrl": "https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F4270366359872047%2F&show_text=false&width=476&t=0"
     },
     {
@@ -69,33 +81,33 @@
   "eventBoxes": [
     {
       "title": "Mid-Week League",
-      "icon": "\ud83c\udfc1",
+      "icon": "🏁",
       "color": "#C8102E",
-      "description": "Our summer mid-week league sees us line up against neighbouring clubs across Hertfordshire \u2014 all paces welcome, from front-runners to first-timers.",
+      "description": "Our summer mid-week league sees us line up against neighbouring clubs across Hertfordshire — all paces welcome, from front-runners to first-timers.",
       "linkLabel": "See the fixtures",
       "linkUrl": "https://www.mwrrl.org.uk/"
     },
     {
       "title": "Chip Shop Challenge",
-      "icon": "\ud83c\udf5f",
+      "icon": "🍟",
       "color": "#C9A24B",
       "badge": "Fan favourite",
-      "description": "A club favourite \u2014 run to the chip shop, eat your chips. Silly, sociable, and exactly the kind of thing the Hares do best.",
+      "description": "A club favourite — run to the chip shop, eat your chips. Silly, sociable, and exactly the kind of thing the Hares do best.",
       "linkLabel": "Ask about the next one",
       "linkUrl": "https://www.facebook.com/hitchinrunningclub"
     },
     {
       "title": "Monopoly Run",
-      "icon": "\ud83c\udfb2",
+      "icon": "🎲",
       "color": "#15161A",
       "badge": "Annual event",
-      "description": "Roll the dice and run the streets \u2014 our take on the classic board game turns Hitchin into a giant board with checkpoints and challenges along the way.",
+      "description": "Roll the dice and run the streets — our take on the classic board game turns Hitchin into a giant board with checkpoints and challenges along the way.",
       "linkLabel": "Find out more",
       "linkUrl": "https://www.facebook.com/hitchinrunningclub"
     },
     {
       "title": "Burnt Hare Events",
-      "icon": "\ud83d\udc07",
+      "icon": "🐇",
       "color": "#8C0C20",
       "description": "Our sister events site brings great races and trail runs to Hitchin and the surrounding Hertfordshire countryside throughout the year.",
       "linkLabel": "Visit burnthare.com",
@@ -103,7 +115,7 @@
     },
     {
       "title": "Strava Club",
-      "icon": "\u26a1",
+      "icon": "⚡",
       "color": "#FC4C02",
       "description": "Log your runs, kudos your clubmates, and see how the group is getting on. Every session and Sunday long run ends up here.",
       "linkLabel": "View Strava Club",
@@ -111,9 +123,9 @@
     },
     {
       "title": "Spond",
-      "icon": "\ud83d\udcc5",
+      "icon": "📅",
       "color": "#6B6F76",
-      "description": "Spond is where all our events are organised and discussed \u2014 RSVP to socials, races and league fixtures, and get reminders before they happen.",
+      "description": "Spond is where all our events are organised and discussed — RSVP to socials, races and league fixtures, and get reminders before they happen.",
       "linkLabel": "Open Spond",
       "linkUrl": "https://www.spond.com/"
     }
@@ -127,5 +139,34 @@
   "events": {
     "description": "We run a number of events under the banner of Hitchin Hares, including competing in the Herts Winter Cross Country League and the Summer Mid-Week League. We're also linked with Burnt Hare, who bring great running events to Hitchin and the surrounding Hertfordshire countryside.",
     "learnMoreUrl": "https://www.hitchinrunningclub.co.uk/club-runs"
+  },
+  "couchTo5k": {
+    "eyebrow": "New to running?",
+    "title": "Couch to 5K",
+    "intro": "A friendly 6-week programme for all abilities, led by a club coach. Small steps, big goals — finishing with a 5K run in week 6.",
+    "highlights": [
+      {
+        "label": "6 weeks",
+        "text": "Wednesday evenings with a 5K at the end"
+      },
+      {
+        "label": "£25",
+        "text": "To register and take part"
+      },
+      {
+        "label": "Medal + fizz",
+        "text": "A medal and a glass of fizz at the finish"
+      },
+      {
+        "label": "Support",
+        "text": "Remote support and assignments between sessions"
+      }
+    ],
+    "note": "Start dates and timings are posted on our Facebook page.",
+    "buttonLabel": "View timings on Facebook",
+    "buttonUrl": "https://www.facebook.com/hitchinrunningclub",
+    "contact": "jakeamostri@gmail.com",
+    "image": "images/couch-to-5k.jpg",
+    "imageAlt": "Couch to 5K poster: a 6 week running programme for all abilities"
   }
 }

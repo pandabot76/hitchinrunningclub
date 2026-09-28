@@ -334,6 +334,22 @@
     .foot-top{grid-template-columns:1fr 1fr;}
     section{padding:70px 0;}
   }
+
+  .c25k{background:var(--paper);}
+  .c25k-grid{display:grid; grid-template-columns:minmax(0,420px) 1fr; gap:56px; align-items:center;}
+  .c25k-img img{width:100%; height:auto; display:block; border:3px solid var(--ink); box-shadow:8px 8px 0 var(--ink); border-radius:6px;}
+  .c25k h2{font-size:clamp(2.1rem, 4.2vw, 3.4rem);}
+  .c25k .eyebrow{display:block; margin-bottom:12px;}
+  .c25k .intro{color:var(--slate); margin-top:16px; font-size:1.05rem; max-width:520px;}
+  .c25k-list{list-style:none; margin:26px 0; display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .c25k-list li{background:#fff; border:2px solid var(--ink); border-radius:8px; padding:14px 16px;}
+  .c25k-list strong{display:block; font-family:'Baloo 2'; font-size:1.3rem; color:var(--red); line-height:1.1;}
+  .c25k-list span{font-size:0.9rem; color:var(--slate);}
+  .c25k .note{font-weight:700; margin-bottom:14px;}
+  .c25k .contact{margin-top:14px; font-size:0.9rem; color:var(--slate);}
+  .c25k .contact a{color:var(--red-dark); font-weight:700;}
+  @media(max-width:900px){ .c25k-grid{grid-template-columns:1fr; gap:36px;} .c25k-img{max-width:420px;} }
+  @media(max-width:520px){ .c25k-list{grid-template-columns:1fr;} }
 </style>
 </head>
 <body>
@@ -346,6 +362,7 @@
   <ul class="nav-links">
     <li><a href="#about">Club</a></li>
     <li><a href="#sessions">Sessions</a></li>
+    <li><a href="#couch-to-5k">Couch to 5K</a></li>
     <li><a href="#races">Races</a></li>
     <li><a href="#join">Join</a></li>
     <li><a href="#community">Community</a></li>
@@ -358,6 +375,7 @@
   <button class="mobile-close" id="mobileCloseBtn" aria-label="close menu">&times;</button>
   <a href="#about">Club</a>
   <a href="#sessions">Sessions</a>
+  <a href="#couch-to-5k">Couch to 5K</a>
   <a href="#races">Races</a>
   <a href="#join">Join</a>
   <a href="#community">Community</a>
@@ -412,6 +430,28 @@
       <p>Turn up to one, two, or all three &mdash; sessions are open to members and visitors alike, no booking needed.</p>
     </div>
     <div class="timetable" id="timetable"></div>
+  </div>
+</section>
+
+<section id="couch-to-5k" class="c25k">
+  <div class="wrap">
+    <div class="c25k-grid">
+      <div class="c25k-img"><img id="c25kImg" src="images/couch-to-5k.jpg" alt="Couch to 5K poster: a 6 week running programme for all abilities"></div>
+      <div>
+        <span class="eyebrow" id="c25kEyebrow">New to running?</span>
+        <h2 id="c25kTitle">Couch to 5K</h2>
+        <p class="intro" id="c25kIntro">A friendly 6-week programme for all abilities, led by a club coach. Small steps, big goals &mdash; finishing with a 5K run in week 6.</p>
+        <ul class="c25k-list" id="c25kList">
+          <li><strong>6 weeks</strong><span>Wednesday evenings with a 5K at the end</span></li>
+          <li><strong>&pound;25</strong><span>To register and take part</span></li>
+          <li><strong>Medal + fizz</strong><span>A medal and a glass of fizz at the finish</span></li>
+          <li><strong>Support</strong><span>Remote support and assignments between sessions</span></li>
+        </ul>
+        <p class="note" id="c25kNote">Start dates and timings are posted on our Facebook page.</p>
+        <a id="c25kBtn" href="https://www.facebook.com/hitchinrunningclub" target="_blank" rel="noopener" class="btn btn-facebook">View timings on Facebook</a>
+        <p class="contact">Questions? Email <a id="c25kEmail" href="mailto:jakeamostri@gmail.com">jakeamostri@gmail.com</a></p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -576,6 +616,20 @@
         <p class="meet">Meet: ${s.meet}</p>
       </div>
     `).join('');
+
+    // Couch to 5K
+    const c = cfg.couchTo5k;
+    if(c){
+      document.getElementById('c25kImg').src = c.image;
+      document.getElementById('c25kImg').alt = c.imageAlt;
+      document.getElementById('c25kEyebrow').textContent = c.eyebrow;
+      document.getElementById('c25kTitle').textContent = c.title;
+      document.getElementById('c25kIntro').textContent = c.intro;
+      document.getElementById('c25kList').innerHTML = c.highlights.map(x => `<li><strong>${x.label}</strong><span>${x.text}</span></li>`).join('');
+      document.getElementById('c25kNote').textContent = c.note;
+      const b = document.getElementById('c25kBtn'); b.textContent = c.buttonLabel; b.href = c.buttonUrl;
+      const e = document.getElementById('c25kEmail'); e.textContent = c.contact; e.href = 'mailto:' + c.contact;
+    }
 
     // Club events grid (configurable boxes)
     const eventBoxesGrid = document.getElementById('eventBoxesGrid');
