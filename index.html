@@ -239,7 +239,7 @@
     position:fixed; bottom:18px; left:18px; right:18px; z-index:200;
     background:#fff3cd; border:1px solid #e0c068; color:#5b4a16;
     padding:14px 18px; border-radius:6px; font-size:0.86rem; max-width:560px; margin:0 auto;
-    display:none;
+    display:none; /* hidden until JS explicitly shows it on failure */
   }
 
   @media (max-width: 900px){
@@ -483,14 +483,56 @@
   // ---- Load club configuration ----
   fetch('club-config.json')
     .then(res => {
-      if(!res.ok) throw new Error('Failed to load config');
+      if(!res.ok) throw new Error('HTTP ' + res.status);
       return res.json();
     })
     .then(renderConfig)
     .catch(err => {
-      console.error(err);
-      document.getElementById('configError').style.display = 'block';
+      console.error('club-config.json failed to load:', err);
+      // Only show the visible error banner in development (file:// protocol)
+      // On a real server a fetch failure is silent in the UI — page still renders with fallback
+      if(window.location.protocol === 'file:'){
+        const el = document.getElementById('configError');
+        el.innerHTML = '<strong>Local preview:</strong> browsers block file:// fetches. Run <code>python3 -m http.server</code> in this folder and open <code>http://localhost:8000</code> instead.';
+        el.style.display = 'block';
+      }
+      // Render fallback config so the page isn't blank on any failure
+      renderConfig(FALLBACK_CONFIG);
     });
+
+  // Fallback config — mirrors club-config.json, used if fetch fails
+  const FALLBACK_CONFIG = {
+    club: { name: 'Hitchin Running Club', shortName: 'Hitchin Hares', tagline: 'A friendly, all-pace running club based in Hitchin. Three sessions a week, every distance from first 5K to marathon PB.' },
+    stats: [
+      { number: '120+', label: 'Active members' },
+      { number: '3', label: 'Sessions every week' },
+      { number: '10K', label: 'Typical club run distance' },
+      { number: 'Est.', label: 'Proudly Hitchin-grown' }
+    ],
+    sessions: [
+      { day: 'Monday', title: 'Intervals', time: '7:00PM', description: 'New for this year — structured speedwork at the track, built to make race pace feel comfortable.', meet: 'Check Facebook for location' },
+      { day: 'Wednesday', title: 'Beginners & Club Run', time: '6:30PM / 7:00PM', description: 'In summer this heads out into local countryside, in winter it stays around town. Around 10km as a club run.', meet: "St Mary's car park, Hitchin" },
+      { day: 'Sunday', title: 'Club Run', time: '9:00AM', description: 'Typically cross country with a 10km distance as the target.', meet: "St Mary's car park, Hitchin" }
+    ],
+    membership: {
+      price: '£35', period: '/ year',
+      description: 'Membership includes various running events, mid-week leagues, and a number of non-running socials each year such as a summer BBQ and Christmas do.',
+      note: 'Sign up via Facebook to say hello, then come along to your first session.',
+      joinSteps: [
+        { title: 'Sign up via Facebook', description: 'Our Facebook page is the best place to say hello and ask any questions before your first run.' },
+        { title: 'Come along to your first session', description: "Join us at St Mary's car park, Wednesday or Sunday. No minimum pace, no pressure." },
+        { title: 'Join the club on Spond', description: "Once you're part of the club, Spond is how we publish running events and gather feedback." }
+      ]
+    },
+    links: {
+      strava: 'https://www.strava.com/clubs/Hitchinrunningclub',
+      facebook: 'https://www.facebook.com/hitchinrunningclub',
+      burntHare: 'http://www.burnthare.com',
+      spond: '#'
+    },
+    contact: { email: 'hello@hitchinrunningclub.co.uk', location: "St Mary's car park, Hitchin, Hertfordshire, SG5 1AB" },
+    events: { description: 'We run a number of events under the banner of Hitchin Hares, including the Herts Winter Cross Country League and the Summer Mid-Week League. We\'re also linked with Burnt Hare, who bring great running events to Hitchin and the surrounding Hertfordshire countryside.' }
+  };
 
   function renderConfig(cfg){
     // Hero
