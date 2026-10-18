@@ -4,23 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hitchin Running Club</title>
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-EB4CJ5YVVS"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-EB4CJ5YVVS');
-</script>
-<meta name="description" content="Hitchin Running Club — a friendly, all-pace running club based in Hitchin, Hertfordshire. Join us for sessions every Monday, Wednesday and Sunday. All abilities welcome, no minimum pace.">
-<meta name="keywords" content="Hitchin Running Club, running club Hitchin, Hertfordshire running, Hitchin Hares, North Herts running, beginners running club, cross country Hertfordshire">
-<meta property="og:title" content="Hitchin Running Club">
-<meta property="og:description" content="A friendly, all-pace running club based in Hitchin, Hertfordshire. Sessions every Monday, Wednesday and Sunday. All abilities welcome.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://www.hitchinrunningclub.co.uk/">
-<meta property="og:image" content="https://www.hitchinrunningclub.co.uk/images/unnamed.jpg">
-<meta name="robots" content="index, follow">
-<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
@@ -227,6 +210,20 @@
   .join-card .price{font-family:'Anton'; font-size:2.6rem; margin-top:20px;}
   .join-card .price span{font-family:'Inter'; font-size:0.95rem; color:var(--slate); font-weight:400; text-transform:none;}
 
+  /* COUCH TO 5K */
+  .c25k{background:var(--paper);}
+  .c25k-grid{display:grid; grid-template-columns:1.15fr 0.85fr; gap:60px; align-items:center;}
+  .c25k .section-head{margin-bottom:32px;}
+  .c25k-highlights{display:grid; grid-template-columns:1fr 1fr; gap:14px; list-style:none;}
+  .c25k-highlights li{background:#fff; border:1px solid #e4e1d8; border-top:3px solid var(--red); border-radius:4px; padding:18px 20px;}
+  .c25k-highlights .label{font-family:'Anton'; font-size:1.35rem; text-transform:uppercase; line-height:1.1;}
+  .c25k-highlights .text{color:var(--slate); font-size:0.9rem; margin-top:6px;}
+  .c25k-note{color:var(--slate); margin-top:26px; font-size:0.95rem;}
+  .c25k-actions{display:flex; gap:14px; flex-wrap:wrap; margin-top:18px; align-items:center;}
+  .c25k-contact{font-size:0.9rem; color:var(--slate);}
+  .c25k-contact a{color:var(--red); font-weight:600;}
+  .c25k-poster img{width:100%; border-radius:4px; box-shadow:0 18px 40px rgba(0,0,0,0.16);}
+
   /* BURNT HARE SECTION */
   #burnthare{ background:var(--fog); }
   #burnthare .section-head p{ color:var(--slate); }
@@ -265,11 +262,16 @@
     .about{grid-template-columns:1fr;}
     .about-img{order:-1;}
     .timetable{grid-template-columns:1fr;}
+    .c25k-grid{grid-template-columns:1fr; gap:40px;}
+    .c25k-poster{max-width:420px;}
     .race-grid{grid-template-columns:1fr;}
     .race-grid .col{grid-template-columns:1fr 1fr; display:grid;}
     .join-grid{grid-template-columns:1fr;}
     .gallery{grid-template-columns:repeat(2,1fr);}
     .foot-top{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width: 520px){
+    .c25k-highlights{grid-template-columns:1fr;}
     section{padding:70px 0;}
   }
 </style>
@@ -284,6 +286,7 @@
   <ul class="nav-links">
     <li><a href="#about">Club</a></li>
     <li><a href="#sessions">Sessions</a></li>
+    <li><a href="#couch-to-5k">Couch to 5K</a></li>
     <li><a href="#races">Races</a></li>
     <li><a href="#burnthare">Burnt Hare</a></li>
     <li><a href="#join">Join</a></li>
@@ -297,6 +300,7 @@
   <button class="mobile-close" id="mobileCloseBtn" aria-label="close menu">&times;</button>
   <a href="#about">Club</a>
   <a href="#sessions">Sessions</a>
+  <a href="#couch-to-5k">Couch to 5K</a>
   <a href="#races">Races</a>
   <a href="#burnthare">Burnt Hare</a>
   <a href="#join">Join</a>
@@ -345,6 +349,27 @@
       <p>Turn up to one, two, or all three &mdash; sessions are open to members and visitors alike, no booking needed.</p>
     </div>
     <div class="timetable" id="timetable"></div>
+  </div>
+</section>
+
+<section id="couch-to-5k" class="c25k">
+  <div class="wrap c25k-grid">
+    <div>
+      <div class="section-head">
+        <span class="eyebrow" id="c25kEyebrow">New to running?</span>
+        <h2 id="c25kTitle">Couch to 5K</h2>
+        <p id="c25kIntro">Loading&hellip;</p>
+      </div>
+      <ul class="c25k-highlights" id="c25kHighlights"></ul>
+      <p class="c25k-note" id="c25kNote"></p>
+      <div class="c25k-actions">
+        <a id="c25kBtn" href="#" target="_blank" class="btn btn-facebook">View timings on Facebook</a>
+        <span class="c25k-contact" id="c25kContact"></span>
+      </div>
+    </div>
+    <div class="c25k-poster">
+      <img id="c25kImage" src="images/couch-to-5k.jpg" alt="Couch to 5K poster">
+    </div>
   </div>
 </section>
 
@@ -515,6 +540,7 @@
         <ul>
           <li><a href="#about">About us</a></li>
           <li><a href="#sessions">Sessions</a></li>
+          <li><a href="#couch-to-5k">Couch to 5K</a></li>
           <li><a href="#races">Races</a></li>
           <li><a href="#join">Membership</a></li>
         </ul>
@@ -612,7 +638,21 @@
       spond: '#'
     },
     contact: { email: 'hello@hitchinrunningclub.co.uk', location: "St Mary's car park, Hitchin, Hertfordshire, SG5 1AB" },
-    events: { description: 'We run a number of events under the banner of Hitchin Hares, including the Herts Winter Cross Country League and the Summer Mid-Week League. We\'re also linked with Burnt Hare, who bring great running events to Hitchin and the surrounding Hertfordshire countryside.' }
+    events: { description: 'We run a number of events under the banner of Hitchin Hares, including the Herts Winter Cross Country League and the Summer Mid-Week League. We\'re also linked with Burnt Hare, who bring great running events to Hitchin and the surrounding Hertfordshire countryside.' },
+    couchTo5k: {
+      eyebrow: 'New to running?', title: 'Couch to 5K',
+      intro: 'A friendly 6-week programme for all abilities, led by a club coach. Small steps, big goals — finishing with a 5K run in week 6.',
+      highlights: [
+        { label: '6 weeks', text: 'Wednesday evenings with a 5K at the end' },
+        { label: '£25', text: 'To register and take part' },
+        { label: 'Medal + fizz', text: 'A medal and a glass of fizz at the finish' },
+        { label: 'Support', text: 'Remote support and assignments between sessions' }
+      ],
+      note: 'Start dates and timings are posted on our Facebook page.',
+      buttonLabel: 'View timings on Facebook', buttonUrl: 'https://www.facebook.com/hitchinrunningclub',
+      contact: 'jakeamostri@gmail.com',
+      image: 'images/couch-to-5k.jpg', imageAlt: 'Couch to 5K poster: a 6 week running programme for all abilities'
+    }
   };
 
   function renderConfig(cfg){
@@ -643,6 +683,33 @@
         <p class="meet">Meet: ${s.meet}</p>
       </div>
     `).join('');
+
+    // Couch to 5K (hidden if missing from config)
+    const c25k = cfg.couchTo5k;
+    const c25kSection = document.getElementById('couch-to-5k');
+    if(!c25k){
+      c25kSection.style.display = 'none';
+    } else {
+      c25kSection.style.display = '';
+      document.getElementById('c25kEyebrow').textContent = c25k.eyebrow || 'New to running?';
+      document.getElementById('c25kTitle').textContent = c25k.title || 'Couch to 5K';
+      document.getElementById('c25kIntro').textContent = c25k.intro || '';
+      document.getElementById('c25kHighlights').innerHTML = (c25k.highlights || []).map(h => `
+        <li>
+          <div class="label">${h.label}</div>
+          <div class="text">${h.text}</div>
+        </li>
+      `).join('');
+      document.getElementById('c25kNote').textContent = c25k.note || '';
+      const btn = document.getElementById('c25kBtn');
+      btn.textContent = c25k.buttonLabel || 'Find out more';
+      btn.href = c25k.buttonUrl || cfg.links.facebook;
+      document.getElementById('c25kContact').innerHTML = c25k.contact
+        ? `Questions? Email <a href="mailto:${c25k.contact}">${c25k.contact}</a>` : '';
+      const img = document.getElementById('c25kImage');
+      if(c25k.image){ img.src = c25k.image; }
+      img.alt = c25k.imageAlt || 'Couch to 5K poster';
+    }
 
     // Strava link
     document.getElementById('stravaBtn').href = cfg.links.strava;
