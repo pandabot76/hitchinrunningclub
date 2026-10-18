@@ -423,8 +423,8 @@
         });
         observer.observe(target, { childList: true, subtree: true });
 
-        // Hard fallback after 12 seconds in case script or fetch stalls
-        var timer = setTimeout(onFail, 12000);
+        // Hard fallback after 6 seconds in case script or fetch stalls
+        var timer = setTimeout(onFail, 6000);
 
         // If the script tag itself 404s or network-errors, fail immediately
         window.__bhWidgetError = onFail;
@@ -544,17 +544,23 @@
       if(!res.ok) throw new Error('HTTP ' + res.status);
       return res.json();
     })
-    .then(renderConfig)
+    .then(cfg => {
+      try {
+        renderConfig(cfg);
+      } catch(renderErr) {
+        // Config loaded but had a structure problem — log clearly and use fallback
+        console.warn('club-config.json loaded but had a missing field, using fallback:', renderErr);
+        renderConfig(FALLBACK_CONFIG);
+      }
+    })
     .catch(err => {
-      console.error('club-config.json failed to load:', err);
-      // Only show the visible error banner in development (file:// protocol)
-      // On a real server a fetch failure is silent in the UI — page still renders with fallback
+      // Fetch/network failure
+      console.error('club-config.json could not be fetched:', err);
       if(window.location.protocol === 'file:'){
         const el = document.getElementById('configError');
         el.innerHTML = '<strong>Local preview:</strong> browsers block file:// fetches. Run <code>python3 -m http.server</code> in this folder and open <code>http://localhost:8000</code> instead.';
         el.style.display = 'block';
       }
-      // Render fallback config so the page isn't blank on any failure
       renderConfig(FALLBACK_CONFIG);
     });
 
@@ -650,9 +656,10 @@
     `;
 
     // Footer contact
+    const email = cfg.contact?.email || '';
     document.getElementById('footContact').innerHTML = `
-      <li><a href="${cfg.links.facebook}" target="_blank">Message us on Facebook</a></li>
-      <li><a href="mailto:${cfg.contact.email}">${cfg.contact.email}</a></li>
+      <li><a href="${cfg.links?.facebook || '#'}" target="_blank">Message us on Facebook</a></li>
+      ${email ? `<li><a href="mailto:${email}">${email}</a></li>` : ''}
     `;
   }
 </script>
