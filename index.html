@@ -374,14 +374,72 @@
         accentColor: '#C8102E'
       };
     </script>
+
+    <!-- Loading state — shown until widget renders or times out -->
+    <div id="bh-loading" style="padding:32px 0; color:var(--slate); font-size:0.95rem; display:flex; align-items:center; gap:12px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2.5" stroke-linecap="round">
+        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83">
+          <animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="1s" repeatCount="indefinite"/>
+        </path>
+      </svg>
+      Loading upcoming Burnt Hare events&hellip;
+    </div>
+
+    <!-- Widget target -->
     <div id="burnthare-events"></div>
-    <script src="https://www.burnthare.com/burnthare-widget.js"></script>
-    <!-- Fallback shown only if widget script fails to load -->
+
+    <!-- Fallback card — shown if widget fails to load after 4 seconds -->
+    <div id="bh-fallback" style="display:none; background:#fff; border:1px solid #e4e1d8; border-radius:6px; padding:28px 32px; margin-top:8px;">
+      <p style="font-weight:600; color:var(--ink); margin-bottom:8px;">Upcoming Burnt Hare events</p>
+      <p style="color:var(--slate); font-size:0.94rem;">Event details are loading from <a href="https://www.burnthare.com" target="_blank" style="color:var(--red);">burnthare.com</a> — visit their site directly for the latest race listings, dates and entry links.</p>
+    </div>
+
+    <script>
+      (function(){
+        var loader   = document.getElementById('bh-loading');
+        var fallback = document.getElementById('bh-fallback');
+        var target   = document.getElementById('burnthare-events');
+
+        function onSuccess(){
+          loader.style.display   = 'none';
+          fallback.style.display = 'none';
+          clearTimeout(timer);
+          observer.disconnect();
+        }
+        function onFail(){
+          loader.style.display   = 'none';
+          fallback.style.display = 'block';
+          observer.disconnect();
+        }
+
+        // MutationObserver fires the instant the widget injects anything into the div
+        var observer = new MutationObserver(function(mutations){
+          for(var m of mutations){
+            if(m.addedNodes.length){
+              onSuccess();
+              return;
+            }
+          }
+        });
+        observer.observe(target, { childList: true, subtree: true });
+
+        // Hard fallback after 12 seconds in case script or fetch stalls
+        var timer = setTimeout(onFail, 12000);
+
+        // If the script tag itself 404s or network-errors, fail immediately
+        window.__bhWidgetError = onFail;
+      })();
+    </script>
+
+    <script src="https://www.burnthare.com/burnthare-widget.js"
+            onerror="window.__bhWidgetError && window.__bhWidgetError()"></script>
+
     <noscript>
       <p style="color:var(--slate); margin-top:24px;">
         Visit <a href="https://www.burnthare.com" target="_blank" style="color:var(--red);">burnthare.com</a> for the latest race listings.
       </p>
     </noscript>
+
     <div style="margin-top:32px;">
       <a href="https://www.burnthare.com" target="_blank" class="btn btn-primary">See all Burnt Hare events</a>
     </div>
